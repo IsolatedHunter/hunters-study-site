@@ -5,7 +5,6 @@ from flask import Flask, render_template, url_for, abort
 app = Flask(__name__)
 
 def get_site_data():
-    # Force Python to look in the exact folder where app.py lives
     base_dir = os.path.dirname(os.path.abspath(__file__))
     file_path = os.path.join(base_dir, 'data.json')
     
@@ -22,12 +21,13 @@ def get_site_data():
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    # Pass a title just in case base.html needs it
+    return render_template('index.html', title="Home")
 
 @app.route('/projects', strict_slashes=False)
 def projects():
     data = get_site_data()
-    return render_template('projects.html', projects=data.get("projects", {}))
+    return render_template('projects.html', projects=data.get("projects", {}), title="Projects")
 
 @app.route('/projects/<project_id>', strict_slashes=False)
 def project_detail(project_id):
@@ -35,25 +35,26 @@ def project_detail(project_id):
     project = data.get("projects", {}).get(project_id)
     if not project:
         abort(404)
-    return render_template('project_detail.html', project=project)
+    # Pass the project title to the browser tab
+    return render_template('project_detail.html', project=project, title=project.get('title'))
 
-@app.route('/academics')
+@app.route('/academics', strict_slashes=False)
 def academics():
-    # This bypasses the JSON entirely to see if the HTML is the problem
+    # TEST MODE: Hardcoded data to isolate HTML issues
     test_classes = [{"number": "101", "name": "Test", "professor": "T", "status": "Passed", "learned": "Test"}]
-    return render_template('academics.html', classes=test_classes)
+    return render_template('academics.html', classes=test_classes, title="Academics")
 
 @app.route('/linktree', strict_slashes=False)
 def linktree():
-    return render_template('linktree.html')
+    return render_template('linktree.html', title="Links")
 
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('error.html', error_code=404, error_message="Page not found."), 404
 
-#@app.errorhandler(500)
-#def server_error(e):
-#    return render_template('error.html', error_code=500, error_message="Internal server error."), 500
+# @app.errorhandler(500)
+# def server_error(e):
+#     return render_template('error.html', error_code=500, error_message="Internal server error."), 500
 
 if __name__ == '__main__':
     app.run(debug=True)
