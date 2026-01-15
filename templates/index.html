@@ -48,7 +48,55 @@
             </div>
         </div>
     </header>
+    <section id="pathways" class="py-24 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-black text-gray-900 uppercase tracking-tight mb-4">Explore My Work</h2>
+                <p class="text-gray-500 max-w-xl mx-auto">Choose a path below to dive deeper into my academic background, technical projects, or social presence.</p>
+            </div>
 
+            <div class="grid md:grid-cols-3 gap-8">
+                <a href="{{ url_for('master_dossier', code='utsa2026') }}" class="group p-8 rounded-[2.5rem] bg-slate-50 border border-slate-100 hover:bg-blue-600 transition-all duration-500">
+                    <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition-transform">
+                        <i class="fas fa-graduation-cap text-2xl text-blue-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-white">Academic Record</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed group-hover:text-blue-50">
+                        A comprehensive look at my UTSA journey. View my official coursework, verified grades, and the specific competencies I've mastered in Physics and Math.
+                    </p>
+                    <div class="mt-6 text-blue-600 font-bold text-sm flex items-center gap-2 group-hover:text-white">
+                        View Dossier <i class="fas fa-arrow-right text-xs"></i>
+                    </div>
+                </a>
+
+                <a href="{{ url_for('portfolio') }}" class="group p-8 rounded-[2.5rem] bg-slate-50 border border-slate-100 hover:bg-blue-600 transition-all duration-500">
+                    <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition-transform">
+                        <i class="fas fa-code text-2xl text-blue-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-white">Project Portfolio</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed group-hover:text-blue-50">
+                        Where theory meets practice. Explore my deep-dive narratives on Python simulations, research projects, and community leadership initiatives.
+                    </p>
+                    <div class="mt-6 text-blue-600 font-bold text-sm flex items-center gap-2 group-hover:text-white">
+                        Explore Projects <i class="fas fa-arrow-right text-xs"></i>
+                    </div>
+                </a>
+
+                <a href="https://linktr.ee/hunterbradshaw" target="_blank" class="group p-8 rounded-[2.5rem] bg-slate-50 border border-slate-100 hover:bg-blue-600 transition-all duration-500">
+                    <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition-transform">
+                        <i class="fas fa-share-alt text-2xl text-blue-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-white">Digital Hub</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed group-hover:text-blue-50">
+                        The quick-access link to my digital presence. Connect with my socials, view current campus involvements, and stay updated on my latest activities.
+                    </p>
+                    <div class="mt-6 text-blue-600 font-bold text-sm flex items-center gap-2 group-hover:text-white">
+                        Visit Linktree <i class="fas fa-arrow-right text-xs"></i>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
     <section id="achievements" class="py-24 bg-gray-50 border-y border-gray-100">
         <div class="max-w-6xl mx-auto px-6">
             <div class="text-center mb-16">
