@@ -271,47 +271,5 @@
         "category": "Core",
         "level": "Lower-Division",
         "learned": "Introduces U.S. political institutions, elections, public opinion, and policy processes."
-    },
-    {
-        "number": "AIS 1243",
-        "name": "AIS: Engineering, Math, and Sciences",
-        "course_type": "Lecture",
-        "parent_course": null,
-        "linked_courses": [],
-        "status": "Passed",
-        "university": "University of Texas at San Antonio",
-        "term": "2025-Fall",
-        "credits": 3,
-        "category": "Core",
-        "level": "Lower-Division",
-        "learned": "Developed academic strategies, study skills, and professional planning techniques tailored for STEM disciplines."
-    },
-    {
-        "number": "MAT 1093",
-        "name": "Precalculus",
-        "course_type": "Lecture",
-        "parent_course": null,
-        "linked_courses": [],
-        "status": "Passed",
-        "university": "Angelo State University",
-        "term": "2025-Spring",
-        "credits": 4,
-        "category": "Major Support",
-        "level": "Lower-Division",
-        "learned": "Strengthened understanding of functions, trigonometry, exponential and logarithmic models, and algebraic problem solving."
-    },
-    {
-        "number": "MAT 1073",
-        "name": "Algebra for Scientists and Engineers",
-        "course_type": "Lecture",
-        "parent_course": null,
-        "linked_courses": [],
-        "status": "Passed",
-        "university": "University of Texas at Austin",
-        "term": "2024-Spring",
-        "credits": 3,
-        "category": "Major Support",
-        "level": "Lower-Division",
-        "learned": "Focused on advanced algebraic techniques, systems of equations, functions, and mathematical modeling for STEM applications."
     }
 ]
