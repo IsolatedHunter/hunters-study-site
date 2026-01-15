@@ -1,0 +1,11 @@
+{
+    "quantum-physics": {
+        "title": "Numerical Methods in Quantum Mechanics",
+        "category": "physics",
+        "tag": "Computational Physics",
+        "description": "Solving the Schrödinger equation for non-standard potentials.",
+        "content": "<h4>Research Overview</h4>...",
+        "gradient": "from-indigo-500 to-purple-600",
+        "icon": "fas fa-wave-square"
+    }
+}

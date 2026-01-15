@@ -4,23 +4,22 @@ from flask import Flask, render_template, abort
 
 app = Flask(__name__)
 
-# --- Data Management ---
-# We load the data once at the global level to improve performance
+# --- Configuration ---
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DATA_FILE = os.path.join(BASE_DIR, 'data.json')
 
-def load_static_data():
-    """Helper to load the JSON file with error handling."""
-    if not os.path.exists(DATA_FILE):
-        return {"projects": {}, "classes": []}
+def load_json_file(filename):
+    """Safely loads a JSON file from the project directory."""
+    file_path = os.path.join(BASE_DIR, filename)
+    if not os.path.exists(file_path):
+        print(f"WARNING: {filename} not found.")
+        return {} if "projects" in filename else []
+    
     try:
-        with open(DATA_FILE, 'r', encoding='utf-8') as f:
+        with open(file_path, 'r', encoding='utf-8') as f:
             return json.load(f)
-    except (json.JSONDecodeError, IOError):
-        return {"projects": {}, "classes": []}
-
-# Load data into memory when the server starts
-site_data = load_static_data()
+    except Exception as e:
+        print(f"ERROR loading {filename}: {e}")
+        return {} if "projects" in filename else []
 
 # --- Routes ---
 
@@ -30,28 +29,27 @@ def home():
 
 @app.route('/projects')
 def projects():
-    # Access the projects dictionary from our loaded data
-    project_list = site_data.get("projects", {})
-    return render_template('projects.html', projects=project_list, title="Projects")
+    # Load only the projects data
+    project_data = load_json_file('projects.json')
+    return render_template('projects.html', projects=project_data, title="Projects")
 
 @app.route('/projects/<project_id>')
 def project_detail(project_id):
-    project = site_data.get("projects", {}).get(project_id)
+    project_data = load_json_file('projects.json')
+    project = project_data.get(project_id)
     if not project:
         abort(404)
     return render_template('project_detail.html', project=project, title=project.get('title'))
 
 @app.route('/academics')
 def academics():
-    # Pass the list of classes directly to the new template
-    course_list = site_data.get("classes", [])
+    # Load only the academic data
+    course_list = load_json_file('academics.json')
     return render_template('academics.html', classes=course_list, title="Academics")
 
 @app.route('/linktree')
 def linktree():
     return render_template('linktree.html', title="Links")
-
-# --- Error Handling ---
 
 @app.errorhandler(404)
 def page_not_found(e):
