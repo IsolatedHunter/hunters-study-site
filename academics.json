@@ -5,7 +5,11 @@
         "professor": null,
         "status": "Passed",
         "university": "University of Texas at San Antonio",
-        "learned": null
+        "category": "Core",
+        "level": "Lower-Division",
+        "term": "2025-Fall",
+        "credits": 3,
+        "learned": "Developed academic writing skills with emphasis on rhetorical analysis, argument structure, and evidence-based essays."
     },
     {
         "number": "WRC 1023",
@@ -13,7 +17,11 @@
         "professor": null,
         "status": "In Progress",
         "university": "University of Texas at San Antonio",
-        "learned": null
+        "category": "Core",
+        "level": "Lower-Division",
+        "term": "2026-Spring",
+        "credits": 3,
+        "learned": "Focused on research-based writing, integrating scholarly sources, citation practices, and sustained analytical arguments."
     },
     {
         "number": "MAT 1213",
@@ -21,7 +29,11 @@
         "professor": null,
         "status": "Passed",
         "university": "University of Texas at San Antonio",
-        "learned": null
+        "category": "Major Support",
+        "level": "Lower-Division",
+        "term": "2025-Fall",
+        "credits": 3,
+        "learned": "Studied limits, continuity, derivatives, and applications of differentiation to physical and mathematical problems."
     },
     {
         "number": "MAT 1223",
@@ -29,7 +41,11 @@
         "professor": null,
         "status": "In Progress",
         "university": "University of Texas at San Antonio",
-        "learned": null
+        "category": "Major Support",
+        "level": "Lower-Division",
+        "term": "2026-Spring",
+        "credits": 3,
+        "learned": "Explores integration techniques, applications of integrals, sequences and series, and introductory differential equations."
     },
     {
         "number": "BIO 2053",
@@ -37,7 +53,11 @@
         "professor": null,
         "status": "Passed",
         "university": "Angelo State University",
-        "learned": null
+        "category": "Core",
+        "level": "Lower-Division",
+        "term": "2024-Fall",
+        "credits": 3,
+        "learned": "Examined cellular biology, tissue structure, and the integumentary, skeletal, muscular, and nervous systems."
     },
     {
         "number": "BIO 2063",
@@ -45,7 +65,11 @@
         "professor": null,
         "status": "Passed",
         "university": "Angelo State University",
-        "learned": null
+        "category": "Core",
+        "level": "Lower-Division",
+        "term": "2025-Spring",
+        "credits": 3,
+        "learned": "Covered cardiovascular, respiratory, digestive, endocrine, and reproductive systems with emphasis on homeostasis."
     },
     {
         "number": "HIS 1043",
@@ -53,7 +77,11 @@
         "professor": null,
         "status": "Passed",
         "university": "Angelo State University",
-        "learned": null
+        "category": "Core",
+        "level": "Lower-Division",
+        "term": "2024-Fall",
+        "credits": 3,
+        "learned": "Analyzed early American history, colonial development, constitutional foundations, and causes of the Civil War."
     },
     {
         "number": "HIS 1053",
@@ -61,7 +89,11 @@
         "professor": null,
         "status": "Passed",
         "university": "Angelo State University",
-        "learned": null
+        "category": "Core",
+        "level": "Lower-Division",
+        "term": "2025-Spring",
+        "credits": 3,
+        "learned": "Studied Reconstruction, industrialization, civil rights movements, and modern political and social developments."
     },
     {
         "number": "POL 1013",
@@ -69,23 +101,11 @@
         "professor": null,
         "status": "In Progress",
         "university": "University of Texas at San Antonio",
-        "learned": null
-    },
-    {
-        "number": "AIS 1243",
-        "name": "AIS: Engineering, Math, and Sciences",
-        "professor": null,
-        "status": "Passed",
-        "university": "University of Texas at San Antonio",
-        "learned": null
-    },
-    {
-        "number": "MAT 1073",
-        "name": "Algebra for Scientists and Engineers",
-        "professor": null,
-        "status": "Passed",
-        "university": "University of Texas at Austin",
-        "learned": null
+        "category": "Core",
+        "level": "Lower-Division",
+        "term": "2026-Spring",
+        "credits": 3,
+        "learned": "Introduces U.S. political institutions, constitutional principles, public opinion, elections, and policy-making processes."
     },
     {
         "number": "CHE 1103",
@@ -93,7 +113,11 @@
         "professor": null,
         "status": "Passed",
         "university": "University of Texas at San Antonio",
-        "learned": null
+        "category": "Major Support",
+        "level": "Lower-Division",
+        "term": "2025-Fall",
+        "credits": 3,
+        "learned": "Introduced atomic structure, stoichiometry, thermochemistry, chemical bonding, and states of matter."
     },
     {
         "number": "CHE 1113",
@@ -101,7 +125,11 @@
         "professor": null,
         "status": "In Progress",
         "university": "University of Texas at San Antonio",
-        "learned": null
+        "category": "Major Support",
+        "level": "Lower-Division",
+        "term": "2026-Spring",
+        "credits": 3,
+        "learned": "Covers chemical kinetics, equilibrium, acids and bases, electrochemistry, and thermodynamics."
     },
     {
         "number": "CS 1063",
@@ -109,7 +137,11 @@
         "professor": null,
         "status": "Passed",
         "university": "University of Texas at San Antonio",
-        "learned": null
+        "category": "Major Support",
+        "level": "Lower-Division",
+        "term": "2025-Fall",
+        "credits": 3,
+        "learned": "Learned foundational programming concepts including variables, control structures, functions, and computational problem-solving."
     },
     {
         "number": "PHY 1943",
@@ -117,7 +149,11 @@
         "professor": null,
         "status": "In Progress",
         "university": "University of Texas at San Antonio",
-        "learned": null
+        "category": "Major",
+        "level": "Lower-Division",
+        "term": "2026-Spring",
+        "credits": 3,
+        "learned": "Introduces classical mechanics including kinematics, Newton’s laws, work and energy, momentum, and rotational motion."
     },
     {
         "number": "PHY 1951",
@@ -125,6 +161,10 @@
         "professor": null,
         "status": "In Progress",
         "university": "University of Texas at San Antonio",
-        "learned": null
+        "category": "Major",
+        "level": "Lower-Division",
+        "term": "2026-Spring",
+        "credits": 1,
+        "learned": "Applied experimental methods to mechanics, including data collection, uncertainty analysis, and formal lab reporting."
     }
 ]

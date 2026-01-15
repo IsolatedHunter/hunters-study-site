@@ -4,51 +4,112 @@
 
 {% block head %}
     <style>
-        .class-card { transition: all 0.3s ease; border-left: 4px solid #cbd5e1; }
-        .class-card:hover { transform: translateX(5px); border-left-color: #2563eb; }
+        .class-card { transition: all 0.3s ease; border-left: 4px solid #cbd5e1; display: flex; }
+        .class-card:hover { transform: translateY(-3px); border-left-color: #2563eb; shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1); }
         .status-passed { background-color: #dcfce7; color: #166534; }
-        .status-in-progress { background-color: #fef9c3; color: #854d0e; }
+        .status-ip { background-color: #fef9c3; color: #854d0e; }
         
-        .pt-32 { padding-top: 4rem !important; }
-        .pb-12 { padding-bottom: 3rem !important; }
+        .filter-btn.active { background-color: #2563eb; color: white; border-color: #2563eb; }
+        .hidden-card { display: none !important; }
+
+        .pt-32 { padding-top: 8rem !important; }
     </style>
 {% endblock %}
 
 {% block content %}
-    <header class="pt-32 pb-12 px-6 bg-white">
-        <div class="max-w-6xl mx-auto">
+    <header class="pt-32 pb-8 px-6 bg-white">
+        <div class="max-w-6xl mx-auto text-center md:text-left">
             <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">Academic Coursework</h1>
-            <p class="text-lg text-gray-600 max-w-2xl">A log of my studies in Physics, Mathematics, and Computer Science.</p>
+            <p class="text-lg text-gray-600 max-w-2xl">University of Texas at San Antonio & Angelo State University</p>
         </div>
     </header>
 
+    <section class="pb-8 px-6 bg-white sticky top-16 z-20 border-b border-gray-100">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div class="flex flex-wrap gap-2">
+                    <button class="filter-btn active px-4 py-2 rounded-lg border border-gray-200 text-xs font-bold uppercase tracking-widest transition" onclick="filterAcademics('all', this)">All</button>
+                    <button class="filter-btn px-4 py-2 rounded-lg border border-gray-200 text-xs font-bold uppercase tracking-widest transition" onclick="filterAcademics('Major', this)">Major</button>
+                    <button class="filter-btn px-4 py-2 rounded-lg border border-gray-200 text-xs font-bold uppercase tracking-widest transition" onclick="filterAcademics('Major Support', this)">Math & Sci</button>
+                    <button class="filter-btn px-4 py-2 rounded-lg border border-gray-200 text-xs font-bold uppercase tracking-widest transition" onclick="filterAcademics('Core', this)">Core</button>
+                    <button class="filter-btn px-4 py-2 rounded-lg border border-gray-200 text-xs font-bold uppercase tracking-widest transition" onclick="filterAcademics('In Progress', this)">In Progress</button>
+                </div>
+                <div class="text-sm font-medium text-gray-500">
+                    Showing <span id="course-count" class="text-blue-600 font-bold">{{ classes|length }}</span> Courses
+                </div>
+            </div>
+        </div>
+    </section>
+
     <main class="py-12 px-6 bg-gray-50 min-h-screen">
-        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-6">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-6" id="academics-grid">
             
             {% for course in classes %}
-            <div class="class-card bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between">
+            <div class="class-card bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex-col justify-between" 
+                 data-category="{{ course.category }}" 
+                 data-status="{{ course.status }}">
                 <div>
                     <div class="flex justify-between items-start mb-4">
-                        <span class="text-sm font-mono font-bold text-blue-600 tracking-wider">{{ course.number }}</span>
-                        <span class="text-xs px-3 py-1 rounded-full font-bold uppercase tracking-tight 
-                            {{ 'status-passed' if course.status == 'Passed' else 'status-in-progress' }}">
+                        <div class="flex flex-col">
+                            <span class="text-sm font-mono font-bold text-blue-600 tracking-wider">{{ course.number }}</span>
+                            <span class="text-[10px] text-gray-400 font-bold uppercase">{{ course.term }}</span>
+                        </div>
+                        <span class="text-[10px] px-3 py-1 rounded-full font-bold uppercase tracking-tight 
+                            {% if course.status == 'Passed' %}status-passed{% else %}status-ip{% endif %}">
                             {{ course.status }}
                         </span>
                     </div>
                     
-                    <h3 class="text-xl font-bold text-gray-900 mb-1">{{ course.name }}</h3>
-                    <p class="text-sm text-gray-500 mb-4 italic">Instructor: {{ course.professor }}</p>
+                    <h3 class="text-xl font-bold text-gray-900 mb-1 leading-tight">{{ course.name }}</h3>
+                    <p class="text-[11px] text-gray-400 mb-4 font-semibold uppercase tracking-wide">
+                        <i class="fas fa-university mr-1"></i> {{ course.university }}
+                    </p>
                     
                     <div class="space-y-2">
-                        <h4 class="text-xs font-bold uppercase text-gray-400 tracking-widest">Key Learnings</h4>
-                        <p class="text-gray-700 text-sm leading-relaxed">
-                            {{ course.learned }}
+                        <h4 class="text-[10px] font-black uppercase text-gray-400 tracking-widest">Core Takeaways</h4>
+                        <p class="text-gray-700 text-sm leading-relaxed italic">
+                            "{{ course.learned }}"
                         </p>
                     </div>
+                </div>
+                
+                <div class="mt-6 pt-4 border-t border-gray-50 flex justify-between items-center">
+                    <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{{ course.category }}</span>
+                    <span class="text-[10px] font-bold text-blue-500 bg-blue-50 px-2 py-0.5 rounded">{{ course.credits }} Credits</span>
                 </div>
             </div>
             {% endfor %}
 
         </div>
     </main>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    function filterAcademics(criteria, btn) {
+        // 1. Update Buttons
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // 2. Filter Logic
+        const cards = document.querySelectorAll('.class-card');
+        let count = 0;
+
+        cards.forEach(card => {
+            const category = card.getAttribute('data-category');
+            const status = card.getAttribute('data-status');
+            
+            // Check if criteria matches Category OR Status
+            if (criteria === 'all' || category === criteria || status === criteria) {
+                card.classList.remove('hidden-card');
+                count++;
+            } else {
+                card.classList.add('hidden-card');
+            }
+        });
+
+        // 3. Update Course Count Display
+        document.getElementById('course-count').innerText = count;
+    }
+</script>
 {% endblock %}
