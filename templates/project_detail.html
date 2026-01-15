@@ -4,50 +4,133 @@
 
 {% block head %}
 <style>
+    /* Layout Logic */
     .pt-40 { padding-top: 10rem !important; }
-    .prose h4 { color: #111827; font-weight: 800; text-transform: uppercase; font-size: 0.875rem; letter-spacing: 0.05em; margin-bottom: 1rem; border-left: 4px solid #2563eb; padding-left: 1rem; }
-    .prose p { margin-bottom: 1.5rem; line-height: 1.8; color: #374151; font-size: 1.125rem; }
+    
+    .article-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    @media (min-width: 1024px) {
+        .article-container {
+            grid-template-columns: 300px 1fr; /* Sidebar fixed width, content flexible */
+        }
+    }
+
+    .sticky-sidebar {
+        position: sticky;
+        top: 8rem;
+        align-self: start;
+    }
+
+    /* Typography & Readability */
+    .prose {
+        max-width: 75ch; /* Optimal line length for 600+ word articles */
+        margin: 0 auto;
+    }
+
+    /* Style for the "I ain't reading all that" summary from JSON */
+    .prose blockquote {
+        border-left: 4px solid #2563eb;
+        background-color: #f8fafc;
+        padding: 1.5rem;
+        margin-bottom: 2.5rem;
+        border-radius: 0.75rem;
+        font-style: italic;
+    }
+
+    .prose blockquote strong {
+        display: block;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        letter-spacing: 0.1em;
+        color: #2563eb;
+        margin-bottom: 0.5rem;
+    }
+
+    .prose h4 { 
+        color: #111827; 
+        font-weight: 800; 
+        text-transform: uppercase; 
+        font-size: 1.25rem; 
+        letter-spacing: 0.05em; 
+        margin-top: 3rem;
+        margin-bottom: 1.25rem; 
+        border-left: 4px solid #2563eb; 
+        padding-left: 1rem; 
+    }
+
+    .prose p { 
+        margin-bottom: 1.5rem; 
+        line-height: 1.8; 
+        color: #374151; 
+        font-size: 1.125rem; 
+    }
+
+    .prose strong {
+        color: #111827;
+        font-weight: 700;
+    }
+
+    /* Diagram Placeholder Styling */
+    .prose img, .diagram-placeholder {
+        width: 100%;
+        border-radius: 1.5rem;
+        margin: 2.5rem 0;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    }
 </style>
 {% endblock %}
 
 {% block content %}
-<article class="pt-40 pb-20 px-6 max-w-5xl mx-auto">
+<article class="pt-40 pb-20 px-6 max-w-6xl mx-auto">
     
-    <div class="flex flex-col lg:flex-row gap-12">
+    <div class="article-container">
         
-        <aside class="lg:w-1/3 order-2 lg:order-1">
-            <div class="sticky top-32 space-y-8 bg-gray-50 p-8 rounded-3xl border border-gray-100">
+        <aside class="sticky-sidebar order-2 lg:order-1">
+            <div class="space-y-8 bg-white p-8 rounded-3xl border border-gray-100 shadow-sm">
                 <a href="{{ url_for('projects') }}" class="text-blue-600 font-bold flex items-center gap-2 hover:-translate-x-1 transition-transform mb-4">
                     <i class="fas fa-arrow-left text-xs"></i> Back to Portfolio
                 </a>
 
-                <div>
-                    <h5 class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Institution</h5>
-                    <p class="text-gray-900 font-bold">{{ project.institution }}</p>
+                <div class="space-y-6">
+                    <div>
+                        <h5 class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Institution</h5>
+                        <p class="text-gray-900 font-bold">{{ project.institution }}</p>
+                    </div>
+
+                    <div>
+                        <h5 class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Timeline</h5>
+                        <p class="text-gray-900 font-bold">{{ project.term }}</p>
+                    </div>
+
+                    <div>
+                        <h5 class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Status</h5>
+                        <span class="inline-block px-3 py-1 rounded-md {% if project.status == 'In Progress' %}bg-yellow-100 text-yellow-800{% else %}bg-green-100 text-green-800{% endif %} text-[10px] font-bold uppercase tracking-tighter">
+                            {{ project.status }}
+                        </span>
+                    </div>
+
+                    <div>
+                        <h5 class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Classification</h5>
+                        <span class="inline-block px-3 py-1 rounded-md bg-blue-600 text-white text-[10px] font-bold uppercase tracking-tighter">
+                            {{ project.type }}
+                        </span>
+                    </div>
                 </div>
 
-                <div>
-                    <h5 class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Timeline</h5>
-                    <p class="text-gray-900 font-bold">{{ project.term }}</p>
-                </div>
-
-                <div>
-                    <h5 class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Classification</h5>
-                    <span class="inline-block px-3 py-1 rounded-md bg-blue-600 text-white text-[10px] font-bold uppercase tracking-tighter">
-                        {{ project.type }}
-                    </span>
-                </div>
-
-                <div class="pt-6 border-t border-gray-200">
-                    <p class="text-sm text-gray-500 mb-4">Interested in discussing this further?</p>
-                    <a href="mailto:hunter.bradshaw@my.utsa.edu" class="block w-full text-center bg-gray-900 text-white py-3 rounded-xl font-bold hover:bg-blue-600 transition">
+                <div class="pt-6 border-t border-gray-100">
+                    <p class="text-sm text-gray-500 mb-4">Questions about this entry?</p>
+                    <a href="mailto:hunter.bradshaw@my.utsa.edu" class="block w-full text-center bg-gray-900 text-white py-3 rounded-xl font-bold hover:bg-blue-600 transition shadow-lg">
                         Contact Me
                     </a>
                 </div>
             </div>
         </aside>
 
-        <div class="lg:w-2/3 order-1 lg:order-2">
+        <div class="order-1 lg:order-2">
             <header class="mb-12">
                 <div class="text-blue-600 font-black text-xs uppercase tracking-[0.3em] mb-4">
                     {{ project.category }}
@@ -56,15 +139,23 @@
                     {{ project.title }}
                 </h1>
                 
-                <div class="w-full h-80 bg-gradient-to-br {{ project.gradient }} rounded-[2rem] flex items-center justify-center shadow-2xl relative overflow-hidden">
-                    <i class="{{ project.icon }} text-white text-[12rem] opacity-20 absolute -right-10 -bottom-10"></i>
-                    <i class="{{ project.icon }} text-white text-9xl z-10 shadow-sm"></i>
+                <div class="w-full h-64 md:h-96 bg-gradient-to-br {{ project.gradient }} rounded-[2.5rem] flex items-center justify-center shadow-2xl relative overflow-hidden">
+                    <i class="{{ project.icon }} text-white text-[15rem] opacity-20 absolute -right-12 -bottom-12"></i>
+                    <i class="{{ project.icon }} text-white text-9xl z-10 drop-shadow-2xl"></i>
                 </div>
             </header>
 
-            <div class="prose prose-blue max-w-none">
+            <div class="prose">
                 {{ project.content | safe }}
             </div>
+
+            <footer class="mt-16 pt-8 border-t border-gray-100 flex justify-between items-center">
+                <p class="text-sm text-gray-400 font-medium">© 2026 Hunter Bradshaw Portfolio</p>
+                <div class="flex gap-4">
+                    <a href="#" class="text-gray-400 hover:text-blue-600 transition"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-gray-900 transition"><i class="fab fa-github"></i></a>
+                </div>
+            </footer>
         </div>
     </div>
 </article>
