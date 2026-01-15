@@ -1,0 +1,22 @@
+{
+    "projects": {
+        "quantum-physics": {
+            "title": "Numerical Methods in Quantum Mechanics",
+            "category": "physics",
+            "tag": "Computational Physics",
+            "description": "Solving the Schrödinger equation...",
+            "content": "<p>Full project text...</p>",
+            "gradient": "from-indigo-500 to-purple-600",
+            "icon": "fas fa-wave-square"
+        }
+    },
+    "classes": [
+        {
+            "number": "PHYS 2103",
+            "name": "Modern Physics",
+            "professor": "Dr. Silva",
+            "status": "In Progress",
+            "learned": "Special relativity and wave-particle duality."
+        }
+    ]
+}

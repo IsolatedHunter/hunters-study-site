@@ -3,13 +3,14 @@ from flask import Flask, render_template, url_for, abort
 
 app = Flask(__name__)
 
-# Helper function to read your "laptop-managed" database
-def get_projects_data():
+# Helper function to read your laptop-managed database
+def get_site_data():
     try:
-        with open('projects.json', 'r') as f:
+        with open('data.json', 'r') as f:
             return json.load(f)
-    except FileNotFoundError:
-        return {}
+    except (FileNotFoundError, json.JSONDecodeError):
+        # Returns empty structure if file is missing or broken
+        return {"projects": {}, "classes": []}
 
 @app.route('/')
 def home():
@@ -17,20 +18,26 @@ def home():
 
 @app.route('/projects', strict_slashes=False)
 def projects():
-    # Pass the database content to the projects grid
-    data = get_projects_data()
-    return render_template('projects.html', projects=data)
+    data = get_site_data()
+    # Pulls ONLY the projects section for the grid
+    return render_template('projects.html', projects=data.get("projects", {}))
 
 @app.route('/projects/<project_id>', strict_slashes=False)
 def project_detail(project_id):
-    # This route handles EVERY individual project page automatically
-    data = get_projects_data()
-    project = data.get(project_id)
+    data = get_site_data()
+    # Looks for specific project within the projects dictionary
+    project = data.get("projects", {}).get(project_id)
     
     if not project:
-        abort(404) # Trigger the error handler if ID doesn't exist
+        abort(404)
         
     return render_template('project_detail.html', project=project)
+
+@app.route('/academics', strict_slashes=False)
+def academics():
+    data = get_site_data()
+    # Pulls ONLY the classes list for the transcript page
+    return render_template('academics.html', classes=data.get("classes", []))
 
 @app.route('/linktree', strict_slashes=False)
 def linktree():
