@@ -26,13 +26,14 @@
 
     <nav class="fixed w-full bg-white/90 backdrop-blur-md z-50 shadow-sm">
         <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="index.html" class="text-xl font-bold tracking-tighter text-blue-600">HunterHQ</a>
+            <span class="text-xl font-bold tracking-tighter text-blue-600">HunterHQ</span>
             <div class="hidden md:flex space-x-8 text-sm font-medium">
-                <a href="index.html#about" class="hover:text-blue-600 transition">About</a>
-                <a href="index.html#experience" class="hover:text-blue-600 transition">Experience</a>
-                <a href="#" class="text-blue-600 border-b-2 border-blue-600">Projects</a>
-                <a href="mailto:hunter.bradshaw@my.utsa.edu" class="hover:text-blue-600 transition">Contact</a>
+                <a href="#about" class="hover:text-blue-600 transition">About</a>
+                <a href="#experience" class="hover:text-blue-600 transition">Experience</a>
+                <a href="/projects" class="hover:text-blue-600 transition">Projects</a>
+                <a href="/linktree" class="hover:text-blue-600 transition">Linktree</a>
             </div>
+            <a href="mailto:hunter.bradshaw@my.utsa.edu" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-blue-700 transition">Hire Me</a>
         </div>
     </nav>
 
@@ -73,7 +74,7 @@
                     </div>
                 </div>
                 <div class="p-6 pt-0 mt-auto">
-                    <a href="#" class="text-blue-600 font-bold text-sm flex items-center gap-2 hover:underline">
+                    <a href="{{ url_for('projects') }}" class="text-blue-600 font-bold text-sm flex items-center gap-2 hover:underline">
                         View Research <i class="fas fa-arrow-right text-xs"></i>
                     </a>
                 </div>
