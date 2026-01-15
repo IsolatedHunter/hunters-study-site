@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     {% block head %}{% endblock %}
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans min-h-screen flex flex-col">
+<body class="{% block body_class %}bg-gray-50 text-gray-800 font-sans{% endblock %}">
+
     <nav class="fixed w-full bg-white/90 backdrop-blur-md z-50 shadow-sm">
         <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
             <span class="text-xl font-bold tracking-tighter text-blue-600">HunterHQ</span>
@@ -22,13 +23,11 @@
         </div>
     </nav>
 
-    <main class="flex-grow">
-        {% block content %}{% endblock %}
-    </main>
+    {% block content %}{% endblock %}
 
-    <footer class="py-12 text-center text-gray-400 text-xs bg-gray-900">
+    <footer class="py-12 text-center text-gray-400 text-xs bg-gray-900 border-t border-gray-800">
         <div class="flex justify-center gap-6 mb-6">
-            <a href="https://www.linkedin.com/in/hunter-bradshaw/" class="hover:text-white transition text-lg"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.linkedin.com/in/hunter-bradshaw/" target="_blank" class="hover:text-white transition text-lg"><i class="fab fa-linkedin"></i></a>
             <a href="mailto:hunter.bradshaw@my.utsa.edu" class="hover:text-white transition text-lg"><i class="far fa-envelope"></i></a>
         </div>
         &copy; 2026 Hunter Bradshaw • Made with UTSA Pride
