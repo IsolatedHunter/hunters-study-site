@@ -4,216 +4,156 @@
 
 {% block head %}
     <style>
-        /* --- UI Styles (Browser Only) --- */
         .pt-32 { padding-top: 8rem !important; }
-        .course-group { transition: all 0.3s ease; border-left: 4px solid #2563eb; }
-        .lab-card { border-left-color: #94a3b8; margin-left: 2rem; background-color: #f8fafc; }
+        .course-group { transition: all 0.3s ease; }
+        .lecture-card { border-left: 4px solid #2563eb; }
+        .lab-card { border-left: 4px solid #94a3b8; margin-left: 2rem; background-color: #f8fafc; }
+        
+        /* Filter Styles */
+        .filter-select { 
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 0.5rem center;
+            background-size: 1em;
+        }
+        
         .status-passed { color: #166534; background: #dcfce7; }
         .status-ip { color: #854d0e; background: #fef9c3; }
         .hidden-course { display: none !important; }
-
-        /* --- PDF/Print Styles --- */
-        @media print {
-            /* Hide Website Navigation and UI */
-            nav, footer, .filter-nav, header, main, .download-btn-container {
-                display: none !important;
-            }
-
-            body { background: white !important; margin: 0; padding: 0; }
-            
-            #print-area {
-                display: block !important;
-                padding: 0.5in;
-                font-family: "Times New Roman", Times, serif;
-                color: black;
-            }
-
-            /* Resume Page Styling */
-            .res-header { text-align: center; border-bottom: 2px solid black; margin-bottom: 15px; }
-            .res-section-title { font-weight: bold; text-transform: uppercase; border-bottom: 1px solid #000; margin: 15px 0 5px 0; font-size: 12pt; }
-            .res-item { display: flex; justify-content: space-between; font-size: 10.5pt; margin-top: 5px; }
-
-            /* Forces Transcript to start on a new page */
-            .page-break { page-break-before: always; }
-
-            /* Transcript Table Styling */
-            table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 9pt; }
-            th, td { border: 1px solid #333; padding: 6px; text-align: left; }
-            th { background-color: #f2f2f2 !important; }
-
-            .print-footer {
-                position: fixed;
-                bottom: 0;
-                width: 100%;
-                text-align: center;
-                font-size: 8pt;
-                color: #666;
-                padding-bottom: 10px;
-            }
-        }
-
-        /* Hide the print content during normal browsing */
-        @media screen {
-            #print-area { display: none; }
-        }
     </style>
 {% endblock %}
 
 {% block content %}
     <header class="pt-32 pb-8 px-6 bg-white border-b border-gray-100">
-        <div class="max-w-6xl mx-auto flex justify-between items-end">
-            <div>
-                <h1 class="text-4xl font-black text-gray-900">Academic Transcript</h1>
-                <p class="text-gray-600">Physics & Mathematics • Multi-Institution Record</p>
-            </div>
-            <div class="download-btn-container">
-                <button onclick="generatePDF()" class="bg-blue-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-blue-700 transition shadow-lg flex items-center gap-2">
-                    <i class="fas fa-file-pdf"></i> Download CV & Transcript
-                </button>
-            </div>
+        <div class="max-w-6xl mx-auto">
+            <h1 class="text-4xl font-black text-gray-900 mb-2">Academic Transcript</h1>
+            <p class="text-gray-600">Physics & Mathematics • Multi-Institution Record</p>
         </div>
     </header>
 
-    <nav class="filter-nav sticky top-16 z-30 bg-white/90 backdrop-blur shadow-sm border-b px-6 py-4">
-        <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-3">
-            <select id="f-subject" class="p-2 text-xs border rounded-lg" onchange="applyFilters()">
-                <option value="all">All Subjects</option>
-                <option value="PHY">Physics</option>
-                <option value="MAT">Mathematics</option>
-                <option value="CHE">Chemistry</option>
-                <option value="BIO">Biology</option>
-                <option value="CS">CompSci</option>
-            </select>
-            <select id="f-term" class="p-2 text-xs border rounded-lg" onchange="applyFilters()">
-                <option value="all">All Terms</option>
-                <option value="2026-Spring">Spring 2026</option>
-                <option value="2025-Fall">Fall 2025</option>
-                <option value="2025-Spring">Spring 2025</option>
-                <option value="2024-Fall">Fall 2024</option>
-            </select>
-            <select id="f-uni" class="p-2 text-xs border rounded-lg" onchange="applyFilters()">
-                <option value="all">All Universities</option>
-                <option value="UTSA">UTSA</option>
-                <option value="Angelo State">Angelo State</option>
-                <option value="UT Austin">UT Austin</option>
-            </select>
-            <div class="bg-blue-50 text-blue-700 rounded-lg p-2 text-center text-xs font-bold">
-                Showing <span id="active-count">{{ classes|length }}</span> Courses
+    <nav class="sticky top-16 z-30 bg-white/90 backdrop-blur shadow-sm border-b border-gray-200 px-6 py-4">
+        <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-5 gap-3">
+            <div>
+                <label class="block text-[10px] font-bold uppercase text-gray-400 mb-1">Subject</label>
+                <select id="filter-subject" class="filter-select w-full p-2 text-xs border rounded-lg" onchange="applyFilters()">
+                    <option value="all">All Subjects</option>
+                    <option value="PHY">Physics</option>
+                    <option value="MAT">Mathematics</option>
+                    <option value="CHE">Chemistry</option>
+                    <option value="BIO">Biology</option>
+                    <option value="CS">CompSci</option>
+                    <option value="HIS/POL/WRC">Core/Writing</option>
+                </select>
+            </div>
+            <div>
+                <label class="block text-[10px] font-bold uppercase text-gray-400 mb-1">Term</label>
+                <select id="filter-term" class="filter-select w-full p-2 text-xs border rounded-lg" onchange="applyFilters()">
+                    <option value="all">All Terms</option>
+                    <option value="2026-Spring">Spring 2026</option>
+                    <option value="2025-Fall">Fall 2025</option>
+                    <option value="2025-Spring">Spring 2025</option>
+                    <option value="2024-Fall">Fall 2024</option>
+                </select>
+            </div>
+            <div>
+                <label class="block text-[10px] font-bold uppercase text-gray-400 mb-1">Level</label>
+                <select id="filter-level" class="filter-select w-full p-2 text-xs border rounded-lg" onchange="applyFilters()">
+                    <option value="all">All Levels</option>
+                    <option value="Lower-Division">Lower Division</option>
+                    <option value="Upper-Division">Upper Division</option>
+                </select>
+            </div>
+            <div>
+                <label class="block text-[10px] font-bold uppercase text-gray-400 mb-1">University</label>
+                <select id="filter-uni" class="filter-select w-full p-2 text-xs border rounded-lg" onchange="applyFilters()">
+                    <option value="all">All Schools</option>
+                    <option value="UTSA">UTSA</option>
+                    <option value="Angelo State">Angelo State</option>
+                    <option value="UT Austin">UT Austin</option>
+                </select>
+            </div>
+            <div class="flex items-end">
+                <div class="w-full bg-blue-50 text-blue-700 rounded-lg p-2 text-center text-xs font-bold">
+                    <span id="active-count">{{ classes|length }}</span> Courses Shown
+                </div>
             </div>
         </div>
     </nav>
 
     <main class="py-10 px-6 bg-gray-50 min-h-screen">
-        <div class="max-w-4xl mx-auto space-y-4">
+        <div class="max-w-4xl mx-auto space-y-4" id="course-container">
+            
             {% for course in classes %}
-            <div class="course-group bg-white p-5 rounded-xl border border-gray-200 {{ 'lab-card' if course.course_type == 'Lab' }}"
+            <div class="course-group shadow-sm rounded-xl overflow-hidden bg-white border border-gray-200 
+                 {{ 'lecture-card' if course.course_type == 'Lecture' else 'lab-card' }}"
                  data-subject="{{ course.number[:3] }}"
                  data-term="{{ course.term }}"
+                 data-level="{{ course.level }}"
                  data-uni="{{ course.university }}">
-                <div class="flex justify-between items-start">
-                    <div>
-                        <span class="text-xs font-mono font-bold text-blue-600">{{ course.number }}</span>
-                        <h3 class="text-lg font-bold text-gray-900">{{ course.name }}</h3>
+                
+                <div class="p-5">
+                    <div class="flex justify-between items-start mb-2">
+                        <div>
+                            <span class="text-xs font-mono font-bold text-blue-600 uppercase">{{ course.number }}</span>
+                            <h3 class="text-lg font-bold text-gray-900">{{ course.name }}</h3>
+                        </div>
+                        <span class="text-[10px] px-2 py-1 rounded font-black uppercase {{ 'status-passed' if course.status == 'Passed' else 'status-ip' }}">
+                            {{ course.status }}
+                        </span>
                     </div>
-                    <span class="text-[10px] px-2 py-1 rounded font-black {{ 'status-passed' if course.status == 'Passed' else 'status-ip' }}">
-                        {{ course.status }}
-                    </span>
+
+                    <p class="text-sm text-gray-600 mb-4">{{ course.learned }}</p>
+
+                    <div class="flex flex-wrap gap-4 mt-4 pt-4 border-t border-gray-50 text-[10px] font-bold uppercase tracking-widest text-gray-400">
+                        <span><i class="fas fa-calendar mr-1"></i> {{ course.term }}</span>
+                        <span><i class="fas fa-university mr-1"></i> {{ course.university }}</span>
+                        <span><i class="fas fa-graduation-cap mr-1"></i> {{ course.credits }} Credits</span>
+                        <span class="text-blue-500">{{ course.category }}</span>
+                    </div>
                 </div>
-                <p class="text-sm text-gray-600 mt-2">{{ course.learned }} </p>
             </div>
             {% endfor %}
+
         </div>
     </main>
-
-    <div id="print-area">
-        <div class="res-header">
-            <h1 style="margin: 0; font-size: 24pt;">HUNTER BRADSHAW</h1>
-            <p style="margin: 5px 0;">San Antonio, TX | hunter.bradshaw@my.utsa.edu [cite: 7]</p>
-            <p style="margin: 0;">Physics & Mathematics Undergraduate | hunterhq.me [cite: 10]</p>
-        </div>
-
-        <div class="res-section-title">Professional Summary</div>
-        <p style="font-size: 10.5pt;">Physics & Mathematics student at UTSA with a focus on computational modeling and research. [cite: 10, 11]</p>
-
-        <div class="res-section-title">Education</div>
-        <div class="res-item">
-            <strong>University of Texas at San Antonio</strong>
-            <span>Expected 2027</span>
-        </div>
-        <p style="margin: 0; font-style: italic;">Bachelor of Science in Physics</p>
-
-        <div class="res-section-title">Core Competencies</div>
-        <p style="font-size: 10.5pt;">Calculus I & II, Physics (Mechanics), General Chemistry, Computer Programming (Python/Java). </p>
-
-        <div class="page-break"></div>
-        <h2 style="text-align: center; border-bottom: 2px solid black; padding-bottom: 10px;">OFFICIAL TRANSCRIPT SUPPLEMENT</h2>
-        
-        <table>
-            <thead>
-                <tr>
-                    <th>Code</th>
-                    <th>Course Name</th>
-                    <th>Institution</th>
-                    <th>Term</th>
-                    <th>Credits</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for course in classes %}
-                <tr>
-                    <td>{{ course.number }} </td>
-                    <td>{{ course.name }} </td>
-                    <td>{{ course.university }} </td>
-                    <td>{{ course.term }} </td>
-                    <td>{{ course.credits }} </td>
-                    <td>{{ course.status }} </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-
-        <div class="print-footer">
-            Generated from Official Portfolio (hunterhq.me) on <span id="print-date"></span>
-        </div>
-    </div>
 {% endblock %}
 
 {% block scripts %}
 <script>
-    document.getElementById('print-date').innerText = new Date().toLocaleDateString();
+function applyFilters() {
+    const subject = document.getElementById('filter-subject').value;
+    const term = document.getElementById('filter-term').value;
+    const level = document.getElementById('filter-level').value;
+    const uni = document.getElementById('filter-uni').value;
+    
+    const courses = document.querySelectorAll('.course-group');
+    let visibleCount = 0;
 
-    function generatePDF() {
-        const originalTitle = document.title;
-        document.title = "Hunter_Bradshaw_CV_Transcript"; // Sets the PDF filename
-        window.print();
-        setTimeout(() => { document.title = originalTitle; }, 500);
-    }
+    courses.forEach(card => {
+        const cSub = card.getAttribute('data-subject');
+        const cTerm = card.getAttribute('data-term');
+        const cLevel = card.getAttribute('data-level');
+        const cUni = card.getAttribute('data-uni');
 
-    function applyFilters() {
-        const sub = document.getElementById('f-subject').value;
-        const term = document.getElementById('f-term').value;
-        const uni = document.getElementById('f-uni').value;
-        const cards = document.querySelectorAll('.course-group');
-        let count = 0;
+        // Logic for Subject (handles the grouped "Core" subjects)
+        const subMatch = (subject === 'all') || 
+                         (subject.includes(cSub)) || 
+                         (subject === 'HIS/POL/WRC' && ['HIS', 'POL', 'WRC'].includes(cSub));
+        
+        const termMatch = (term === 'all' || cTerm === term);
+        const levelMatch = (level === 'all' || cLevel === level);
+        const uniMatch = (uni === 'all' || cUni.includes(uni));
 
-        cards.forEach(card => {
-            const cSub = card.getAttribute('data-subject');
-            const cTerm = card.getAttribute('data-term');
-            const cUni = card.getAttribute('data-uni');
+        if (subMatch && termMatch && levelMatch && uniMatch) {
+            card.classList.remove('hidden-course');
+            visibleCount++;
+        } else {
+            card.classList.add('hidden-course');
+        }
+    });
 
-            const match = (sub === 'all' || cSub === sub) &&
-                          (term === 'all' || cTerm === term) &&
-                          (uni === 'all' || cUni.includes(uni));
-
-            if (match) {
-                card.classList.remove('hidden-course');
-                count++;
-            } else {
-                card.classList.add('hidden-course');
-            }
-        });
-        document.getElementById('active-count').innerText = count;
-    }
+    document.getElementById('active-count').innerText = visibleCount;
+}
 </script>
 {% endblock %}
