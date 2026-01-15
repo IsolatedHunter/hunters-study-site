@@ -5,12 +5,12 @@ from flask import Flask, render_template, abort
 
 app = Flask(__name__)
 
-# Helper to find where your files are located
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 def load_json_data(filename):
-    """Attempt to load JSON; if it fails, the error will be sent to the error handler."""
     file_path = os.path.join(BASE_DIR, filename)
+    if not os.path.exists(file_path):
+        raise FileNotFoundError(f"Database file '{filename}' is missing at {file_path}")
     with open(file_path, 'r', encoding='utf-8') as f:
         return json.load(f)
 
@@ -18,17 +18,35 @@ def load_json_data(filename):
 def home():
     return render_template('index.html', title="Home")
 
-@app.route('/projects')
+@app.route('/projects', strict_slashes=False)
 def projects():
-    # If projects.json is broken, this will trigger the 500 error page
-    data = load_json_data('projects.json')
-    return render_template('projects.html', projects=data, title="Projects")
+    # Load from data.json
+    data = load_json_data('data.json')
+    all_projects = data.get("projects", {})
+    return render_template('projects.html', projects=all_projects, title="Projects")
+
+@app.route('/projects/<project_id>', strict_slashes=False)
+def project_detail(project_id):
+    data = load_json_data('data.json')
+    project = data.get("projects", {}).get(project_id)
+    if not project:
+        abort(404)
+    return render_template('project_detail.html', project=project, title=project.get('title'))
 
 @app.route('/academics')
 def academics():
-    # If academics.json is broken, this will trigger the 500 error page
+    # Load from academics.json
+    # If academics.json is just a list [{}, {}], 'data' will be that list
     data = load_json_data('academics.json')
-    return render_template('academics.html', classes=data, title="Academics")
+    
+    # Logic check: if your JSON is a list, pass it directly. 
+    # If it's a dict like {"classes": []}, use data.get("classes")
+    if isinstance(data, list):
+        course_list = data
+    else:
+        course_list = data.get("classes", [])
+        
+    return render_template('academics.html', classes=course_list, title="Academics")
 
 @app.route('/linktree')
 def linktree():
@@ -42,8 +60,8 @@ def page_not_found(e):
 
 @app.errorhandler(Exception)
 def handle_unexpected_error(e):
-    # This catches EVERYTHING and sends it to your error.html
     tb = traceback.format_exc()
+    print(tb) 
     return render_template(
         'error.html', 
         error_code=500, 
@@ -52,5 +70,4 @@ def handle_unexpected_error(e):
     ), 500
 
 if __name__ == '__main__':
-    # debug=True is essential to see real errors!
     app.run(debug=True)
