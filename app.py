@@ -20,14 +20,14 @@ def home():
 
 @app.route('/projects', strict_slashes=False)
 def projects():
-    # Load from data.json
-    data = load_json_data('data.json')
+    # Load from projects.json
+    data = load_json_data('projects.json')
     all_projects = data.get("projects", {})
     return render_template('projects.html', projects=all_projects, title="Projects")
 
 @app.route('/projects/<project_id>', strict_slashes=False)
 def project_detail(project_id):
-    data = load_json_data('data.json')
+    data = load_json_data('projects.json')
     project = data.get("projects", {}).get(project_id)
     if not project:
         abort(404)
