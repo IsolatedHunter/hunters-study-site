@@ -1,16 +1,130 @@
 [
     {
-        "number": "PHYS 2103",
-        "name": "Modern Physics",
-        "professor": "Dr. Silva",
-        "status": "In Progress",
-        "learned": "Special relativity and wave-particle duality."
+        "number": "WRC 1013",
+        "name": "Freshman Composition I",
+        "professor": null,
+        "status": "Passed",
+        "university": "University of Texas at San Antonio",
+        "learned": null
     },
     {
-        "number": "MAT 1214",
+        "number": "WRC 1023",
+        "name": "Freshman Composition II",
+        "professor": null,
+        "status": "In Progress",
+        "university": "University of Texas at San Antonio",
+        "learned": null
+    },
+    {
+        "number": "MAT 1213",
         "name": "Calculus I",
-        "professor": "Dr. Smith",
+        "professor": null,
         "status": "Passed",
-        "learned": "Limits and derivatives."
+        "university": "University of Texas at San Antonio",
+        "learned": null
+    },
+    {
+        "number": "MAT 1223",
+        "name": "Calculus II",
+        "professor": null,
+        "status": "In Progress",
+        "university": "University of Texas at San Antonio",
+        "learned": null
+    },
+    {
+        "number": "BIO 2053",
+        "name": "Human Anatomy & Physiology I",
+        "professor": null,
+        "status": "Passed",
+        "university": "Angelo State University",
+        "learned": null
+    },
+    {
+        "number": "BIO 2063",
+        "name": "Human Anatomy & Physiology II",
+        "professor": null,
+        "status": "Passed",
+        "university": "Angelo State University",
+        "learned": null
+    },
+    {
+        "number": "HIS 1043",
+        "name": "U.S. History to Civil War",
+        "professor": null,
+        "status": "Passed",
+        "university": "Angelo State University",
+        "learned": null
+    },
+    {
+        "number": "HIS 1053",
+        "name": "U.S. History Civil War to Present",
+        "professor": null,
+        "status": "Passed",
+        "university": "Angelo State University",
+        "learned": null
+    },
+    {
+        "number": "POL 1013",
+        "name": "Introduction to American Politics",
+        "professor": null,
+        "status": "In Progress",
+        "university": "University of Texas at San Antonio",
+        "learned": null
+    },
+    {
+        "number": "AIS 1243",
+        "name": "AIS: Engineering, Math, and Sciences",
+        "professor": null,
+        "status": "Passed",
+        "university": "University of Texas at San Antonio",
+        "learned": null
+    },
+    {
+        "number": "MAT 1073",
+        "name": "Algebra for Scientists and Engineers",
+        "professor": null,
+        "status": "Passed",
+        "university": "University of Texas at Austin",
+        "learned": null
+    },
+    {
+        "number": "CHE 1103",
+        "name": "General Chemistry I",
+        "professor": null,
+        "status": "Passed",
+        "university": "University of Texas at San Antonio",
+        "learned": null
+    },
+    {
+        "number": "CHE 1113",
+        "name": "General Chemistry II",
+        "professor": null,
+        "status": "In Progress",
+        "university": "University of Texas at San Antonio",
+        "learned": null
+    },
+    {
+        "number": "CS 1063",
+        "name": "Introduction to Computer Programming I",
+        "professor": null,
+        "status": "Passed",
+        "university": "University of Texas at San Antonio",
+        "learned": null
+    },
+    {
+        "number": "PHY 1943",
+        "name": "Physics for Scientists and Engineers I",
+        "professor": null,
+        "status": "In Progress",
+        "university": "University of Texas at San Antonio",
+        "learned": null
+    },
+    {
+        "number": "PHY 1951",
+        "name": "Physics for Scientists and Engineers I Lab",
+        "professor": null,
+        "status": "In Progress",
+        "university": "University of Texas at San Antonio",
+        "learned": null
     }
 ]
