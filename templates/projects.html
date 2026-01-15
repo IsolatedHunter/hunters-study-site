@@ -1,33 +1,60 @@
-{% extends "layout.html" %}
+{% extends "base.html" %}
 
 {% block title %}Projects | Hunter Bradshaw{% endblock %}
 
 {% block head %}
-<style>
-    .project-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-    .project-card:hover { transform: translateY(-8px); }
-    .filter-btn.active { background-color: #2563eb; color: white; border-color: #2563eb; }
-</style>
+    <style>
+        .project-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .project-card:hover { transform: translateY(-8px); }
+        .filter-btn.active { background-color: #2563eb; color: white; border-color: #2563eb; }
+    </style>
 {% endblock %}
 
 {% block content %}
-<header class="pt-32 pb-12 px-6 bg-white">
-    <div class="max-w-6xl mx-auto">
-        <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">Selected Projects</h1>
-    </div>
-</header>
+    <header class="pt-32 pb-12 px-6 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">Selected Projects</h1>
+            <p class="text-lg text-gray-600 max-w-2xl">A collection of my work spanning mathematical modeling, physics research, and community-driven initiatives.</p>
+        </div>
+    </header>
 
-<section class="pb-12 px-6 bg-white">
+    <section class="pb-12 px-6 bg-white">
+        <div class="max-w-6xl mx-auto flex flex-wrap gap-3">
+            <button class="filter-btn active px-5 py-2 rounded-full border border-gray-200 text-sm font-semibold transition" onclick="filterProjects('all', this)">All Projects</button>
+            <button class="filter-btn px-5 py-2 rounded-full border border-gray-200 text-sm font-semibold transition" onclick="filterProjects('physics', this)">Physics & Math</button>
+            <button class="filter-btn px-5 py-2 rounded-full border border-gray-200 text-sm font-semibold transition" onclick="filterProjects('leadership', this)">Leadership & Service</button>
+        </div>
     </section>
 
-<main class="py-12 px-6">
-    <div class="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="project-grid">
-        </div>
-</main>
+    <main class="py-12 px-6">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="project-grid">
+            <div class="project-card bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm flex flex-col" data-category="physics">
+                <div class="h-48 bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center p-6">
+                    <i class="fas fa-wave-square text-white text-6xl opacity-30 absolute"></i>
+                    <code class="text-white text-lg font-mono z-10">E = mc²</code>
+                </div>
+                <div class="p-6 flex-grow">
+                    <div class="text-xs font-bold text-indigo-600 uppercase tracking-widest mb-2">Computational Physics</div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900">Numerical Methods in Quantum Mechanics</h3>
+                    <p class="text-sm text-gray-600 mb-4 leading-relaxed">Solving the Schrödinger equation for non-standard potentials using Python and NumPy.</p>
+                </div>
+                <div class="p-6 pt-0 mt-auto">
+                    <a href="{{ url_for('projects') }}" class="text-blue-600 font-bold text-sm flex items-center gap-2 hover:underline">View Research <i class="fas fa-arrow-right text-xs"></i></a>
+                </div>
+            </div>
+            </div>
+    </main>
 {% endblock %}
 
 {% block scripts %}
-<script>
-    function filterProjects(category, btn) { /* filter logic */ }
-</script>
+    <script>
+        function filterProjects(category, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const cards = document.querySelectorAll('.project-card');
+            cards.forEach(card => {
+                card.style.display = (category === 'all' || card.getAttribute('data-category') === category) ? 'flex' : 'none';
+            });
+        }
+    </script>
 {% endblock %}
