@@ -6,14 +6,20 @@
     <style>
         .project-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; }
         .project-card:hover { transform: translateY(-8px); }
-        .filter-btn.active { background-color: #2563eb; color: white; border-color: #2563eb; }
+        
+        /* Active state for both type and category buttons */
+        .filter-btn.active, .cat-btn.active { 
+            background-color: #2563eb !important; 
+            color: white !important; 
+            border-color: #2563eb !important; 
+        }
         
         .pt-32 { padding-top: 8rem !important; }
         .hidden-card { display: none !important; }
         
         .badge-ip { background: #fef9c3; color: #854d0e; }
         .badge-done { background: #dcfce7; color: #166534; }
-        .badge-exp { background: #ede9fe; color: #5b21b6; } /* Purple for experiences */
+        .badge-exp { background: #ede9fe; color: #5b21b6; }
     </style>
 {% endblock %}
 
@@ -37,7 +43,7 @@
             
             <div class="flex flex-wrap gap-2">
                 <span class="w-full text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Filter by Category</span>
-                <button class="cat-btn active px-4 py-1.5 rounded-lg border text-xs font-bold transition bg-gray-50" onclick="filterEntries('cat', 'all', this)">Everything</button>
+                <button class="cat-btn active px-4 py-1.5 rounded-lg border text-xs font-bold transition" onclick="filterEntries('cat', 'all', this)">Everything</button>
                 <button class="cat-btn px-4 py-1.5 rounded-lg border text-xs font-bold transition" onclick="filterEntries('cat', 'physics', this)">Physics</button>
                 <button class="cat-btn px-4 py-1.5 rounded-lg border text-xs font-bold transition" onclick="filterEntries('cat', 'programming', this)">Programming</button>
                 <button class="cat-btn px-4 py-1.5 rounded-lg border text-xs font-bold transition" onclick="filterEntries('cat', 'leadership', this)">Leadership</button>
@@ -48,7 +54,6 @@
 
     <main class="py-12 px-6 bg-gray-50 min-h-screen">
         <div class="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="portfolio-grid">
-            
             {% for entry in entries %}
             <div class="project-card bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-sm" 
                  data-type="{{ entry.type }}" 
@@ -89,7 +94,47 @@
                 </div>
             </div>
             {% endfor %}
-
         </div>
     </main>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Initialize current filter states
+    let currentType = 'all';
+    let currentCat = 'all';
+
+    function filterEntries(filterType, value, btn) {
+        // 1. Update active button styles
+        if (filterType === 'type') {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            currentType = value;
+        } else {
+            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+            currentCat = value;
+        }
+        btn.classList.add('active');
+
+        // 2. Perform the filtering
+        const cards = document.querySelectorAll('.project-card');
+        
+        cards.forEach(card => {
+            const cardType = card.getAttribute('data-type');
+            const cardCat = card.getAttribute('data-category');
+            
+            // Logic: Must match Type AND Category
+            const typeMatch = (currentType === 'all' || cardType === currentType);
+            const catMatch = (currentCat === 'all' || cardCat === currentCat);
+
+            if (typeMatch && catMatch) {
+                card.classList.remove('hidden-card');
+                // Optional: Add a small fade-in animation
+                card.style.opacity = "0";
+                setTimeout(() => { card.style.opacity = "1"; card.style.transition = "opacity 0.3s"; }, 10);
+            } else {
+                card.classList.add('hidden-card');
+            }
+        });
+    }
+</script>
 {% endblock %}
