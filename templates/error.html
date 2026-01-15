@@ -1,25 +1,46 @@
 {% extends "base.html" %}
 
-{% block title %}Error {{ error_code }}{% endblock %}
+{% block title %}Issue Detected ({{ error_code }}){% endblock %}
 
 {% block content %}
-<main class="pt-32 pb-12 px-6 max-w-4xl mx-auto">
-    <div class="bg-red-50 border-l-4 border-red-500 p-8 rounded-lg shadow-sm">
-        <h1 class="text-4xl font-black text-red-600 mb-2">Error {{ error_code }}</h1>
-        <p class="text-xl text-gray-800 font-semibold mb-4">{{ error_message }}</p>
-        
-        <hr class="border-red-200 mb-6">
+<main class="pt-32 pb-12 px-6 max-w-2xl mx-auto text-center">
+    <div class="mb-8 text-slate-300">
+        <i class="fas fa-exclamation-circle text-6xl"></i>
+    </div>
 
-        <h2 class="text-sm font-bold uppercase tracking-widest text-gray-500 mb-2">Technical Details:</h2>
-        <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto">
-            <pre class="text-pink-400 text-xs font-mono leading-relaxed">{{ traceback }}</pre>
-        </div>
+    <h1 class="text-3xl font-black text-slate-900 mb-4 italic tracking-tighter">
+        Something didn't go as planned.
+    </h1>
+    
+    <p class="text-lg text-slate-600 mb-8 leading-relaxed">
+        We encountered a <span class="font-mono bg-slate-100 px-2 py-1 rounded text-sm uppercase">{{ error_code }}</span> error. 
+        {{ error_message if error_message else "The page you are looking for might have moved or is temporarily unavailable." }}
+    </p>
 
-        <div class="mt-8">
-            <a href="{{ url_for('home') }}" class="inline-block bg-gray-900 text-white px-6 py-2 rounded-full font-bold text-sm hover:bg-gray-800 transition">
-                Return Home
-            </a>
+    <div class="flex flex-col sm:flex-row justify-center gap-4 mb-12">
+        <a href="{{ url_for('home') }}" class="bg-slate-900 text-white px-8 py-3 rounded-full font-bold text-sm hover:bg-blue-600 transition shadow-lg">
+            Return to Dashboard
+        </a>
+        <button onclick="document.getElementById('tech-details').classList.toggle('hidden')" class="text-slate-400 hover:text-slate-600 text-sm font-semibold underline decoration-2 underline-offset-4">
+            View Technical Details
+        </button>
+    </div>
+
+    <div id="tech-details" class="hidden text-left animate-fade-in">
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-6 shadow-inner">
+            <h2 class="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-3">System Traceback</h2>
+            <div class="bg-white border border-slate-100 rounded p-4 overflow-x-auto">
+                <pre class="text-[10px] text-slate-500 font-mono leading-tight">{{ traceback }}</pre>
+            </div>
         </div>
     </div>
 </main>
+
+<style>
+    @keyframes fade-in {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in { animation: fade-in 0.4s ease-out forwards; }
+</style>
 {% endblock %}

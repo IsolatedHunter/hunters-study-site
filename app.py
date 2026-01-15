@@ -67,18 +67,34 @@ def linktree():
 
 # --- Error Handlers ---
 
+# --- Error Handlers ---
+
 @app.errorhandler(404)
 def page_not_found(e):
-    return render_template('error.html', error_code=404, error_message="Page not found."), 404
+    # This triggers if a URL doesn't exist
+    return render_template('error.html', 
+        error_code=404, 
+        error_message="The page you're looking for has vanished into a black hole.",
+        traceback="N/A - Page simply not found."
+    ), 404
 
-@app.errorhandler(Exception)
-def handle_unexpected_error(e):
-    tb = traceback.format_exc()
-    print(tb) 
-    return render_template(
-        'error.html', 
+@app.errorhandler(403)
+def forbidden(e):
+    # This triggers if the Dossier Code is wrong
+    return render_template('error.html', 
+        error_code=403, 
+        error_message="Access Denied. A valid credentials code is required to view this dossier.",
+        traceback="Security Exception: Unauthorized Access Attempt"
+    ), 403
+
+@app.errorhandler(500)
+def internal_error(e):
+    # This triggers if your Python code crashes
+    # It captures the "traceback" so you can fix the bug
+    tb = traceback.format_exc() 
+    return render_template('error.html', 
         error_code=500, 
-        error_message=str(e), 
+        error_message="Our server encountered a glitch in the simulation.",
         traceback=tb
     ), 500
 
