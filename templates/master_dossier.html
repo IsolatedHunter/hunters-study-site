@@ -4,125 +4,108 @@
     <meta charset="UTF-8">
     <title>Master Dossier | Hunter Bradshaw</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Inter:wght@400;600;800&display=swap');
 
-        /* PRINT CORE ENGINE */
+        /* 1. FORCE ZERO MARGINS ON PRINT */
+        @page {
+            margin: 0;
+            size: letter; /* Ensures 8.5x11 scale */
+        }
+
         @media print {
-            body { background: white !important; margin: 0 !important; padding: 0 !important; -webkit-print-color-adjust: exact; }
+            body { margin: 0; padding: 0; background: white; }
             .no-print { display: none !important; }
             
-            /* Forces project isolation */
-            .page-break { 
-                page-break-after: always !important; 
-                page-break-before: always !important;
-                display: block; 
-                clear: both;
+            /* 2. FULL PAGE RESUME FIX */
+            .resume-section {
+                height: 100vh;
+                width: 100vw;
+                overflow: hidden;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                page-break-after: always;
             }
 
-            .master-container { width: 100% !important; max-width: none !important; box-shadow: none !important; }
-            
-            /* Tightens transcript for printing */
-            .transcript-row { break-inside: avoid !important; }
+            .resume-img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain; /* Prevents stretching */
+                display: block; /* Removes the "weird" bottom gap */
+            }
+
+            /* 3. SECTION ISOLATION */
+            .page-break { 
+                page-break-before: always; 
+                padding: 1in !important; /* Standard document margins for text pages */
+            }
         }
 
-        body { font-family: 'Inter', sans-serif; background-color: #f1f5f9; color: #1e293b; line-height: 1.4; }
-        .mono { font-family: 'Roboto Mono', monospace; }
+        /* WEB VIEW STYLING */
+        body { font-family: 'Inter', sans-serif; background-color: #f1f5f9; }
         .master-container { max-width: 8.5in; margin: 0 auto; background: white; }
+        .mono { font-family: 'Roboto Mono', monospace; }
 
-        /* RESUME IMAGE SCALING */
-        .resume-page { 
-            width: 100%; 
-            height: 11in; /* Forces standard page height */
-            object-fit: contain; 
-            display: block; 
+        /* TIGHTER TEXT FOR 600-WORD STORIES */
+        .prose-block { 
+            font-size: 11.5px; 
+            line-height: 1.5; 
+            color: #334155; 
+            column-count: 1; /* Keep as single column for readability */
         }
-
-        /* TRANSCRIPT TABLE */
-        .transcript-table { width: 100%; border-collapse: collapse; font-size: 11px; }
-        .transcript-header { border-bottom: 2px solid #000; text-align: left; font-weight: 800; }
-        .transcript-row { border-bottom: 1px solid #e2e8f0; }
-        .transcript-row td { padding: 8px 6px; }
-
-        /* NARRATIVE TEXT ADJUSTMENTS (Ensures 600 words fit) */
-        .prose-block { font-size: 12px; line-height: 1.5; color: #334155; }
         .prose-block h4 { 
-            font-weight: 800; 
-            text-transform: uppercase; 
-            margin-top: 12px; 
-            margin-bottom: 4px;
-            color: #1d4ed8; 
-            font-size: 11px; 
-            border-left: 3px solid #1d4ed8; 
-            padding-left: 8px; 
-        }
-        .prose-block blockquote { 
-            font-style: italic; 
-            border-left: 4px solid #cbd5e1; 
-            padding: 12px; 
-            margin: 12px 0; 
-            background: #f8fafc; 
-            font-size: 11px;
+            font-weight: 800; text-transform: uppercase; 
+            margin: 12px 0 4px 0; color: #1d4ed8; font-size: 10px; 
+            border-left: 3px solid #1d4ed8; padding-left: 8px; 
         }
         .prose-block p { margin-bottom: 8px; text-align: justify; }
+
+        /* TRANSCRIPT TABLE */
+        .transcript-table { width: 100%; border-collapse: collapse; font-size: 10.5px; }
+        .transcript-header { border-bottom: 2px solid #000; text-align: left; font-weight: 800; }
+        .transcript-row { border-bottom: 1px solid #e2e8f0; break-inside: avoid; }
     </style>
 </head>
-<body class="p-0 md:p-10">
+<body>
 
-    <div class="no-print max-w-4xl mx-auto mb-8 flex justify-between items-center bg-slate-900 text-white p-4 rounded-xl shadow-lg">
-        <div class="pl-2">
-            <h2 class="font-black uppercase text-xs tracking-tighter">Hunter Bradshaw // Master Dossier</h2>
-            <p class="text-[10px] text-slate-400">Layout Optimized for Print-to-PDF</p>
-        </div>
-        <button onclick="window.print()" class="bg-blue-600 hover:bg-blue-700 px-8 py-2 rounded-lg font-bold transition">
-            <i class="fas fa-file-pdf mr-2"></i> EXPORT TO PDF
-        </button>
+    <div class="no-print p-6 bg-slate-900 text-white flex justify-between items-center sticky top-0 z-50">
+        <h2 class="font-bold text-sm tracking-widest">HUNTER BRADSHAW // DOSSIER</h2>
+        <button onclick="window.print()" class="bg-blue-600 px-6 py-2 rounded font-bold text-sm">PRINT TO PDF</button>
     </div>
 
-    <div class="master-container shadow-2xl overflow-hidden">
+    <div class="master-container">
         
-        <section class="page-break">
+        <section class="resume-section">
             <img 
                 src="{{ url_for('static', filename='Hunter_Bradshaws_Resume.png') }}" 
-                class="resume-page" 
-                alt="Resume"
+                class="resume-img" 
             >
         </section>
 
-        <section class="page-break p-12">
-            <div class="flex justify-between items-end border-b-4 border-slate-900 pb-4 mb-6">
-                <div>
-                    <h2 class="text-3xl font-black uppercase tracking-tighter text-slate-900">Academic Transcript</h2>
-                    <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mt-1">University of Texas at San Antonio</p>
-                </div>
-                <div class="text-right">
-                    <p class="text-[10px] font-black uppercase text-blue-600 italic">Audit Record: 2026</p>
-                    <p class="text-[10px] font-bold text-slate-400 uppercase">Status: Good Standing</p>
-                </div>
+        <section class="page-break">
+            <div class="flex justify-between items-end border-b-4 border-black pb-4 mb-6">
+                <h2 class="text-2xl font-black uppercase">Academic Transcript</h2>
+                <div class="text-right text-[10px] font-bold text-gray-400">UTSA // CLASS OF 2026</div>
             </div>
 
             <table class="transcript-table mono">
                 <thead>
-                    <tr class="transcript-header text-slate-500">
-                        <td class="pb-3">Course ID</td>
-                        <td class="pb-3">Course Name & Learning Outcome</td>
-                        <td class="pb-3 text-center">Term</td>
-                        <td class="pb-3 text-right">Grade</td>
+                    <tr class="transcript-header">
+                        <td class="pb-2">COURSE</td>
+                        <td class="pb-2">LEARNING OUTCOME</td>
+                        <td class="pb-2 text-right">GRADE</td>
                     </tr>
                 </thead>
                 <tbody>
                     {% for course in classes %}
                     <tr class="transcript-row">
-                        <td class="font-bold text-slate-900 pt-3">{{ course.number }}</td>
-                        <td class="pt-3">
-                            <div class="font-bold uppercase text-slate-800">{{ course.name }}</div>
-                            <div class="text-[10px] font-sans text-slate-500 leading-tight mt-1 italic">
-                                {{ course.learned }}
-                            </div>
+                        <td class="font-bold py-3 pr-4">{{ course.number }}</td>
+                        <td class="py-3">
+                            <span class="font-bold uppercase">{{ course.name }}</span><br>
+                            <span class="font-sans text-gray-500 italic">{{ course.learned }}</span>
                         </td>
-                        <td class="text-center text-[10px] pt-3">{{ course.term }}</td>
-                        <td class="text-right font-black text-blue-700 pt-3">{{ course.grade }}</td>
+                        <td class="text-right font-bold text-blue-700 py-3">{{ course.grade }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -130,15 +113,14 @@
         </section>
 
         {% for entry in entries %}
-        <section class="page-break p-10">
-            <div class="border-b-2 border-slate-100 pb-4 mb-6 flex justify-between items-start">
-                <div class="max-w-xl">
-                    <span class="text-[10px] font-black uppercase text-blue-600 tracking-widest">Project Narrative / {{ entry.type }}</span>
-                    <h2 class="text-4xl font-black uppercase tracking-tighter text-slate-900 mt-1">{{ entry.title }}</h2>
+        <section class="page-break">
+            <div class="flex justify-between items-start border-b-2 border-gray-100 pb-4 mb-6">
+                <div>
+                    <span class="text-[9px] font-black text-blue-600 uppercase">{{ entry.type }}</span>
+                    <h2 class="text-3xl font-black uppercase tracking-tighter">{{ entry.title }}</h2>
                 </div>
-                <div class="text-right font-bold text-xs shrink-0">
-                    <p class="text-slate-900">{{ entry.term }}</p>
-                    <p class="text-slate-400 uppercase text-[9px] tracking-widest">{{ entry.institution }}</p>
+                <div class="text-right font-bold text-[10px] text-gray-400">
+                    {{ entry.term }}<br>{{ entry.institution }}
                 </div>
             </div>
 
@@ -149,10 +131,6 @@
         {% endfor %}
 
     </div>
-
-    <footer class="mt-8 pb-12 text-center text-[9px] font-black uppercase tracking-[0.4em] text-slate-300 no-print">
-        Institutional Archive // Generated via PortfoliCMS
-    </footer>
 
 </body>
 </html>
