@@ -1,43 +1,25 @@
 {% extends "base.html" %}
 
-{% block title %}Oops! | Hunter Bradshaw{% endblock %}
-
-{% block head %}
-<style>
-    /* Enforced spacing for error page aesthetics */
-    .error-container {
-        padding-top: 8rem;
-        padding-bottom: 8rem;
-    }
-    .glitch-text {
-        text-shadow: 2px 2px #eff6ff;
-    }
-</style>
-{% endblock %}
+{% block title %}Error {{ error_code }}{% endblock %}
 
 {% block content %}
-<div class="error-container flex flex-col items-center justify-center px-6 text-center">
-    <div class="mb-8 text-blue-600">
-        <i class="fas fa-exclamation-triangle text-7xl animate-pulse"></i>
-    </div>
-
-    <h1 class="text-9xl font-black text-gray-200 glitch-text mb-4">
-        {{ error_code if error_code else "Oops" }}
-    </h1>
-
-    <h2 class="text-3xl font-bold text-gray-900 mb-4">Something went wrong</h2>
-    <p class="text-gray-600 max-w-md mb-12 leading-relaxed">
-        {{ error_message if error_message else "The page you are looking for might have been removed, had its name changed, or is temporarily unavailable." }}
-    </p>
-
-    <div class="flex flex-col sm:flex-row gap-4">
-        <button onclick="history.back()" class="px-8 py-3 bg-white border-2 border-gray-200 text-gray-700 font-bold rounded-xl hover:border-blue-600 hover:text-blue-600 transition flex items-center justify-center gap-2">
-            <i class="fas fa-arrow-left"></i> Go Back
-        </button>
+<main class="pt-32 pb-12 px-6 max-w-4xl mx-auto">
+    <div class="bg-red-50 border-l-4 border-red-500 p-8 rounded-lg shadow-sm">
+        <h1 class="text-4xl font-black text-red-600 mb-2">Error {{ error_code }}</h1>
+        <p class="text-xl text-gray-800 font-semibold mb-4">{{ error_message }}</p>
         
-        <a href="{{ url_for('home') }}" class="px-8 py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition shadow-lg shadow-blue-200 flex items-center justify-center gap-2">
-            <i class="fas fa-home"></i> Back to Home
-        </a>
+        <hr class="border-red-200 mb-6">
+
+        <h2 class="text-sm font-bold uppercase tracking-widest text-gray-500 mb-2">Technical Details:</h2>
+        <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto">
+            <pre class="text-pink-400 text-xs font-mono leading-relaxed">{{ traceback }}</pre>
+        </div>
+
+        <div class="mt-8">
+            <a href="{{ url_for('home') }}" class="inline-block bg-gray-900 text-white px-6 py-2 rounded-full font-bold text-sm hover:bg-gray-800 transition">
+                Return Home
+            </a>
+        </div>
     </div>
-</div>
+</main>
 {% endblock %}
