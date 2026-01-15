@@ -5,18 +5,6 @@ from flask import Flask, render_template, url_for, abort
 app = Flask(__name__)
 
 def get_site_data():
-    # This finds the directory where app.py is located
-    base_dir = os.path.dirname(os.path.abspath(__file__))
-    file_path = os.path.join(base_dir, 'data.json')
-    
-    try:
-        with open(file_path, 'r') as f:
-            return json.load(f)
-    except Exception as e:
-        print(f"Error: Could not load data.json. {e}")
-        return {"projects": {}, "classes": []}
-
-def get_site_data():
     # Force Python to look in the exact folder where app.py lives
     base_dir = os.path.dirname(os.path.abspath(__file__))
     file_path = os.path.join(base_dir, 'data.json')
