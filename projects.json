@@ -9,7 +9,7 @@
             "institution": "Self-study / Online",
             "term": "Spring 2026",
             "description": "Learning Python alongside physics courses for data entry, plotting, and simulations.",
-            "content": "<h4>Blog Reflection</h4><p>I've started learning Python alongside my physics coursework to make lab data analysis and plotting way easier. Honestly, it’s been a mix of frustration and excitement — debugging syntax errors is humbling, but once a script runs perfectly, it feels like a superpower. I'm focusing on NumPy and Matplotlib first, and slowly learning to automate repetitive tasks like cleaning datasets. I hope to eventually build small simulations for physics problems I encounter in class, which would be super cool and practical.</p>",
+            "content": "<h4>Blog Reflection</h4><p>Oh man, learning Python has been such a rollercoaster! I started this to make my physics labs less painful, and let me tell you, the first few hours of staring at error messages made me want to throw my laptop out the window. But then something magical happened — my first working script! Suddenly, all those plots and tables I used to make by hand were just sitting there, clean and perfect. I’ve been diving into NumPy and Matplotlib and even tried automating some repetitive lab calculations — it’s honestly thrilling. I feel like a coding wizard every time a script runs, and I can’t wait to start building mini physics simulations. This is exactly the kind of mix of challenge and fun I live for.</p>",
             "gradient": "from-blue-400 to-green-500",
             "icon": "fas fa-code"
         },
@@ -22,7 +22,7 @@
             "institution": "RYLA",
             "term": "Summer 2024",
             "description": "Attended leadership camp and engaged in teamwork and personal development exercises.",
-            "content": "<h4>Blog Reflection</h4><p>RYLA was honestly one of the best experiences I've had in high school. The team-building exercises were intense but rewarding. I learned so much about communication, leadership, and even my own limits. I walked away feeling more confident in group situations and more aware of how to motivate and collaborate with others. It’s one of those experiences where you realize leadership is more than just being in charge — it’s about listening, planning, and inspiring others.</p>",
+            "content": "<h4>Blog Reflection</h4><p>RYLA was honestly one of the most eye-opening experiences of my life. The team challenges pushed me way out of my comfort zone, and at first, I wasn’t sure if I’d survive the awkward icebreakers (seriously, why are those so brutal?). But by the end, I felt unstoppable. I learned how to communicate effectively, rally a group, and even see my own strengths in a way I never had before. It was hilarious, exhausting, and inspiring all at once. I left camp thinking, 'Wow, I can actually lead and make an impact' — and that confidence has stuck with me ever since.</p>",
             "gradient": "from-green-300 to-blue-400",
             "icon": "fas fa-users"
         },
@@ -35,7 +35,7 @@
             "institution": "Coursera / Microsoft",
             "term": "2026",
             "description": "Professional certificate in Python development covering programming fundamentals, data analysis, automation, web development, and generative AI.",
-            "content": "<h4>Blog Reflection</h4><p>I enrolled in this certificate to level up my Python skills in a structured way. The projects are hands-on, and I really like that it includes web development with Flask. I’m especially excited about the final project where we build a sports data chatbot — it feels like a real-world application of everything I've been learning. It's challenging, but I feel like I'm building a portfolio I can be proud of.</p>",
+            "content": "<h4>Blog Reflection</h4><p>I dove into this Python certificate because I wanted structure and real projects — and wow, it hasn’t disappointed. The hands-on exercises are genuinely fun, and I love the feeling of slowly building a real portfolio piece with each module. Web development with Flask was intimidating at first, but building my first mini app made me feel like a legit developer. I’m especially pumped for the final project where we build a sports data chatbot — it’s like everything I’ve been learning finally clicks together. It’s challenging, yes, but every hurdle I cross is insanely satisfying. I can’t wait to show this off in my portfolio!</p>",
             "gradient": "from-blue-400 to-teal-500",
             "icon": "fas fa-laptop-code"
         },
@@ -48,7 +48,7 @@
             "institution": "Coursera / Adobe",
             "term": "2026",
             "description": "Learn design fundamentals, image editing, generative AI for creatives, and portfolio-ready projects using Adobe tools.",
-            "content": "<h4>Blog Reflection</h4><p>This certificate is helping me explore creative skills outside of physics. Learning Photoshop and Illustrator has been surprisingly fun. The AI integration lessons are wild — I never thought I’d be using AI to assist in design projects. I’m enjoying experimenting with brand kits and compositing images. By the end, I hope to have a portfolio that really shows off my creative side.</p>",
+            "content": "<h4>Blog Reflection</h4><p>This Adobe certificate has been surprisingly addictive. I never thought I’d get so hooked on Photoshop and Illustrator! The AI integration stuff is wild — it feels like having a little helper inside the software making me look better than I deserve. I’ve been messing around with brand kits, logos, and compositing images, and it’s honestly so satisfying to see the designs actually come to life. I can feel my creative confidence growing, and I can’t wait to compile a portfolio that shows off some real flair. Plus, it’s just fun to play with color, shape, and design in a way that makes me nerdy and creative at the same time.</p>",
             "gradient": "from-purple-400 to-pink-500",
             "icon": "fas fa-paint-brush"
         },
@@ -61,7 +61,7 @@
             "institution": "Coursera / Microsoft",
             "term": "2026",
             "description": "Professional certificate for public relations and communications, covering content management, media relations, crisis management, and integrated campaigns.",
-            "content": "<h4>Blog Reflection</h4><p>This program is pushing me outside of my STEM comfort zone. Learning about PR strategies, content creation, and crisis management has been eye-opening. The projects are really practical — I’m learning to create actual campaigns and analyze stakeholders. Even if I don’t go into PR as a career, I feel like these skills will help me communicate better in any field, including physics research and academic presentations.</p>",
+            "content": "<h4>Blog Reflection</h4><p>Okay, so this PR certificate has been such a weirdly entertaining challenge for me. I’m totally a STEM person, so diving into communications, media relations, and crisis management is like learning a new language. But the projects are actually really fun — creating a full PR campaign and thinking about stakeholder analysis makes me feel like I’m running my own tiny company. I’ve learned that clear communication is literally everything, and seeing how strategy and creativity come together is eye-opening. I might not end up in PR, but wow, these skills are going to make me way more effective at presenting ideas and working in teams everywhere, from physics labs to student projects.</p>",
             "gradient": "from-yellow-400 to-orange-500",
             "icon": "fas fa-bullhorn"
         }
