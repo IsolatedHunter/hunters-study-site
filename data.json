@@ -5,7 +5,7 @@
             "category": "physics",
             "tag": "Computational Physics",
             "description": "Solving the Schrödinger equation...",
-            "content": "<p>Full project text...</p>",
+            "content": "<p>Content here...</p>",
             "gradient": "from-indigo-500 to-purple-600",
             "icon": "fas fa-wave-square"
         }
@@ -17,6 +17,13 @@
             "professor": "Dr. Silva",
             "status": "In Progress",
             "learned": "Special relativity and wave-particle duality."
+        },
+        {
+            "number": "MAT 1214",
+            "name": "Calculus I",
+            "professor": "Dr. Smith",
+            "status": "Passed",
+            "learned": "Foundations of limits and derivatives."
         }
     ]
 }

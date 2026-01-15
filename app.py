@@ -36,8 +36,9 @@ def project_detail(project_id):
 @app.route('/academics', strict_slashes=False)
 def academics():
     data = get_site_data()
-    # Pulls ONLY the classes list for the transcript page
-    return render_template('academics.html', classes=data.get("classes", []))
+    # This pulls the list named "classes" from your data.json
+    classes_list = data.get("classes", []) 
+    return render_template('academics.html', classes=classes_list)
 
 @app.route('/linktree', strict_slashes=False)
 def linktree():
