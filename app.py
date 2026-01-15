@@ -1,7 +1,7 @@
 import json
 import os
 import traceback
-from flask import Flask, render_template, abort
+from flask import Flask, render_template, abort, request
 
 app = Flask(__name__)
 
@@ -17,6 +17,20 @@ def load_json_data(filename):
 @app.route('/')
 def home():
     return render_template('index.html', title="Home")
+
+@app.route('/master-dossier')
+def master_dossier():
+    # The 'password' is checked in the URL: /master-dossier?code=utsa2026
+    if request.args.get('code') != 'utsa2026':
+        abort(404)
+    portfolio_data = load_json_data('portfolio_data.json')['entries']
+    academics_data = load_json_data('academics.json')
+    # If academics is a list, use it; otherwise get "classes"
+    classes = academics_data if isinstance(academics_data, list) else academics_data.get("classes", [])
+
+    return render_template('master_dossier.html', 
+                           entries=portfolio_data, 
+                           classes=classes)
 
 @app.route('/portfolio')
 def portfolio():

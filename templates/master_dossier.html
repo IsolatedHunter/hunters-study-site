@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Master Dossier | Hunter Bradshaw</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @media print {
+            body { background: white; color: black; }
+            .no-print { display: none !important; }
+            .page-break { page-break-before: always; }
+            .card { border: 1px solid #eee !important; box-shadow: none !important; }
+            a { text-decoration: none; color: black; }
+            a:after { content: " (" attr(href) ")"; font-size: 0.8rem; } /* Shows URLs on paper */
+        }
+        
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        .master-container { max-width: 8.5in; margin: 0 auto; background: white; padding: 40px; }
+    </style>
+</head>
+<body class="p-8">
+
+    <div class="no-print mb-8 text-center">
+        <div class="bg-blue-600 text-white p-4 rounded-xl inline-block">
+            <p class="font-bold mb-2">Master Dossier Mode Active</p>
+            <button onclick="window.print()" class="bg-white text-blue-600 px-4 py-2 rounded-lg font-bold hover:bg-gray-100 transition">
+                <i class="fas fa-print mr-2"></i> Print to PDF
+            </button>
+        </div>
+    </div>
+
+    <div class="master-container shadow-2xl border border-gray-100">
+        <header class="border-b-4 border-black pb-6 mb-8 flex justify-between items-end">
+            <div>
+                <h1 class="text-5xl font-black uppercase tracking-tighter">Hunter Bradshaw</h1>
+                <p class="text-xl text-blue-600 font-bold">Physics & Mathematics | UTSA 2026</p>
+            </div>
+            <div class="text-right text-sm">
+                <p>hunter.bradshaw@my.utsa.edu</p>
+                <p>linkedin.com/in/hunter-bradshaw/</p>
+            </div>
+        </header>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-black uppercase border-b-2 border-gray-200 mb-4">Academic Record</h2>
+            <div class="grid grid-cols-2 gap-4">
+                {% for course in classes %}
+                <div class="flex justify-between border-b border-gray-50 py-1">
+                    <span class="font-bold">{{ course.name }}</span>
+                    <span class="text-gray-500">{{ course.grade }}</span>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section class="page-break">
+            <h2 class="text-2xl font-black uppercase border-b-2 border-gray-200 mb-6">Portfolio & Experience</h2>
+            <div class="space-y-8">
+                {% for entry in entries %}
+                <div class="card p-6 border border-gray-100 rounded-xl">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-xl font-bold">{{ entry.title }}</h3>
+                        <span class="text-sm font-black text-blue-600">{{ entry.term }}</span>
+                    </div>
+                    <p class="text-gray-500 text-xs font-bold uppercase mb-3">{{ entry.institution }} • {{ entry.tag }}</p>
+                    <p class="text-sm leading-relaxed mb-4">{{ entry.description }}</p>
+                    
+                    <div class="bg-gray-50 p-4 rounded-lg text-xs italic text-gray-600">
+                        {{ entry.content | striptags | truncate(300) }}...
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <footer class="mt-12 pt-8 border-t border-gray-200 text-center text-xs text-gray-400">
+            Generated via Hunter Bradshaw Portfolio CMS. Visit hunterbradshaw.com/portfolio for full digital stories.
+        </footer>
+    </div>
+
+</body>
+</html>
