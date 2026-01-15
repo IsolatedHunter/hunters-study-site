@@ -4,108 +4,100 @@
     <meta charset="UTF-8">
     <title>Master Dossier | Hunter Bradshaw</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Inter:wght@400;600;800&display=swap');
-
-        /* 1. FORCE ZERO MARGINS ON PRINT */
-        @page {
-            margin: 0;
-            size: letter; /* Ensures 8.5x11 scale */
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Inter:wght@400;700;900&display=swap');
 
         @media print {
-            body { margin: 0; padding: 0; background: white; }
+            body { background: white !important; padding: 0 !important; margin: 0 !important; }
             .no-print { display: none !important; }
             
-            /* 2. FULL PAGE RESUME FIX */
-            .resume-section {
-                height: 100vh;
-                width: 100vw;
-                overflow: hidden;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                page-break-after: always;
-            }
-
-            .resume-img {
-                width: 100%;
-                height: 100%;
-                object-fit: contain; /* Prevents stretching */
-                display: block; /* Removes the "weird" bottom gap */
-            }
-
-            /* 3. SECTION ISOLATION */
+            /* Strict page isolation for projects */
             .page-break { 
-                page-break-before: always; 
-                padding: 1in !important; /* Standard document margins for text pages */
+                page-break-before: always !important; 
+                display: block; 
+                clear: both;
             }
+
+            .master-container { box-shadow: none !important; border: none !important; width: 100% !important; max-width: none !important; padding: 0 !important; }
+            
+            /* Prevent transcript rows from splitting across pages */
+            .transcript-row { break-inside: avoid !important; }
+            
+            /* Scale the Resume PNG to fit the first page */
+            .resume-img { width: 100%; height: auto; max-height: 10.5in; object-fit: contain; }
         }
 
-        /* WEB VIEW STYLING */
-        body { font-family: 'Inter', sans-serif; background-color: #f1f5f9; }
-        .master-container { max-width: 8.5in; margin: 0 auto; background: white; }
+        body { font-family: 'Inter', sans-serif; color: #111; background-color: #f1f5f9; }
         .mono { font-family: 'Roboto Mono', monospace; }
+        .master-container { max-width: 8.5in; margin: 0 auto; background: white; min-height: 11in; }
 
-        /* TIGHTER TEXT FOR 600-WORD STORIES */
-        .prose-block { 
-            font-size: 11.5px; 
-            line-height: 1.5; 
-            color: #334155; 
-            column-count: 1; /* Keep as single column for readability */
-        }
-        .prose-block h4 { 
-            font-weight: 800; text-transform: uppercase; 
-            margin: 12px 0 4px 0; color: #1d4ed8; font-size: 10px; 
-            border-left: 3px solid #1d4ed8; padding-left: 8px; 
-        }
-        .prose-block p { margin-bottom: 8px; text-align: justify; }
+        /* Transcript Styling */
+        .transcript-table { width: 100%; border-collapse: collapse; font-size: 0.75rem; }
+        .transcript-header { border-bottom: 2px solid #000; text-align: left; font-weight: 900; }
+        .transcript-row { border-bottom: 1px solid #edf2f7; }
+        .transcript-row td { padding: 10px 8px; vertical-align: top; }
 
-        /* TRANSCRIPT TABLE */
-        .transcript-table { width: 100%; border-collapse: collapse; font-size: 10.5px; }
-        .transcript-header { border-bottom: 2px solid #000; text-align: left; font-weight: 800; }
-        .transcript-row { border-bottom: 1px solid #e2e8f0; break-inside: avoid; }
+        /* Adjusted Narrative Styling to fit 600 words on one page */
+        .prose-block { font-size: 11.5px; line-height: 1.5; color: #334155; }
+        .prose-block h4 { font-weight: 800; text-transform: uppercase; margin-top: 1rem; color: #1d4ed8; font-size: 0.75rem; border-left: 3px solid #1d4ed8; padding-left: 8px; }
+        .prose-block blockquote { font-style: italic; border-left: 4px solid #cbd5e1; padding: 1rem; margin: 1rem 0; background: #f8fafc; color: #475569; border-radius: 0 8px 8px 0; }
+        .prose-block p { margin-bottom: 0.75rem; text-align: justify; }
     </style>
 </head>
-<body>
+<body class="p-0 md:p-8">
 
-    <div class="no-print p-6 bg-slate-900 text-white flex justify-between items-center sticky top-0 z-50">
-        <h2 class="font-bold text-sm tracking-widest">HUNTER BRADSHAW // DOSSIER</h2>
-        <button onclick="window.print()" class="bg-blue-600 px-6 py-2 rounded font-bold text-sm">PRINT TO PDF</button>
+    <div class="no-print max-w-4xl mx-auto mb-6 flex justify-between items-center bg-gray-900 text-white p-4 rounded-xl shadow-xl">
+        <div class="pl-4">
+            <h2 class="font-black uppercase text-xs">Hunter Bradshaw</h2>
+            <p class="text-[10px] text-gray-400">Master Dossier System</p>
+        </div>
+        <button onclick="window.print()" class="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-lg font-bold text-sm transition">
+            <i class="fas fa-print mr-2"></i> Print Dossier
+        </button>
     </div>
 
-    <div class="master-container">
+    <div class="master-container shadow-2xl">
         
-        <section class="resume-section">
+        <section class="w-full bg-white">
             <img 
                 src="{{ url_for('static', filename='Hunter_Bradshaws_Resume.png') }}" 
-                class="resume-img" 
+                class="resume-img block" 
+                alt="Resume"
             >
         </section>
 
-        <section class="page-break">
-            <div class="flex justify-between items-end border-b-4 border-black pb-4 mb-6">
-                <h2 class="text-2xl font-black uppercase">Academic Transcript</h2>
-                <div class="text-right text-[10px] font-bold text-gray-400">UTSA // CLASS OF 2026</div>
+        <section class="page-break p-12">
+            <div class="flex justify-between items-end border-b-4 border-black pb-4 mb-8">
+                <div>
+                    <h2 class="text-3xl font-black uppercase tracking-tighter">Academic Transcript</h2>
+                    <p class="text-xs font-bold text-gray-400 uppercase tracking-widest">University of Texas at San Antonio</p>
+                </div>
+                <div class="text-right">
+                    <p class="text-[10px] font-black uppercase text-blue-600">66 Credits</p>
+                    <p class="text-[10px] font-bold text-gray-400">Active Academic Merit</p>
+                </div>
             </div>
 
             <table class="transcript-table mono">
                 <thead>
                     <tr class="transcript-header">
-                        <td class="pb-2">COURSE</td>
-                        <td class="pb-2">LEARNING OUTCOME</td>
-                        <td class="pb-2 text-right">GRADE</td>
+                        <td class="pb-2">Course</td>
+                        <td class="pb-2">Description & Learning Outcome</td>
+                        <td class="pb-2 text-right">Grade</td>
                     </tr>
                 </thead>
                 <tbody>
                     {% for course in classes %}
                     <tr class="transcript-row">
-                        <td class="font-bold py-3 pr-4">{{ course.number }}</td>
+                        <td class="font-bold py-3">{{ course.number }}</td>
                         <td class="py-3">
-                            <span class="font-bold uppercase">{{ course.name }}</span><br>
-                            <span class="font-sans text-gray-500 italic">{{ course.learned }}</span>
+                            <div class="font-black uppercase text-gray-800">{{ course.name }}</div>
+                            <div class="text-[10px] font-sans text-gray-500 leading-snug mt-1 italic">
+                                {{ course.learned }}
+                            </div>
                         </td>
-                        <td class="text-right font-bold text-blue-700 py-3">{{ course.grade }}</td>
+                        <td class="text-right font-black text-blue-700 py-3">{{ course.grade }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -113,14 +105,15 @@
         </section>
 
         {% for entry in entries %}
-        <section class="page-break">
-            <div class="flex justify-between items-start border-b-2 border-gray-100 pb-4 mb-6">
+        <section class="page-break p-12">
+            <div class="border-b-2 border-gray-100 pb-4 mb-8 flex justify-between items-start">
                 <div>
-                    <span class="text-[9px] font-black text-blue-600 uppercase">{{ entry.type }}</span>
-                    <h2 class="text-3xl font-black uppercase tracking-tighter">{{ entry.title }}</h2>
+                    <span class="text-[10px] font-black uppercase text-blue-600 tracking-widest">Entry / {{ entry.type }}</span>
+                    <h2 class="text-4xl font-black uppercase tracking-tighter text-gray-900 mt-1">{{ entry.title }}</h2>
                 </div>
-                <div class="text-right font-bold text-[10px] text-gray-400">
-                    {{ entry.term }}<br>{{ entry.institution }}
+                <div class="text-right">
+                    <p class="mono text-sm font-bold">{{ entry.term }}</p>
+                    <p class="text-[10px] font-black uppercase text-gray-400">{{ entry.institution }}</p>
                 </div>
             </div>
 
@@ -131,6 +124,10 @@
         {% endfor %}
 
     </div>
+
+    <footer class="mt-12 pb-12 text-center text-[9px] font-black uppercase tracking-[0.4em] text-gray-400 no-print">
+        Official Document Archive // Hunter Bradshaw
+    </footer>
 
 </body>
 </html>
