@@ -64,7 +64,7 @@ def join_campaign():
         name = request.form.get('name')
         email = request.form.get('email')
         role = request.form.get('role')
-        flash("Thanks for joining the team, Hunter will reach out soon!")
+        flash("Temporaly this system is down! Please try again later.", "error")
     return render_template('join.html')
 
 @app.route('/resume')
