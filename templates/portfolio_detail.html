@@ -1,42 +1,84 @@
 {% extends "base.html" %}
 
-{% block title %}{{ project.title }} | Hunter Bradshaw{% endblock %}
+{% block title %}
+{{ project.title }} · {{ project.category }} | Hunter Bradshaw
+{% endblock %}
 
 {% block head %}
 <style>
-    /* Layout Logic */
     .pt-40 { padding-top: 10rem !important; }
     
-    .article-container {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 3rem;
+    /* Blog Hero Section */
+    .blog-hero {
+        position: relative;
+        height: 500px;
+        overflow: hidden;
     }
 
-    @media (min-width: 1024px) {
-        .article-container {
-            grid-template-columns: 300px 1fr; /* Sidebar fixed width, content flexible */
-        }
+    .blog-hero-bg {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, var(--color-1), var(--color-2));
+        opacity: 1;
     }
 
-    .sticky-sidebar {
-        position: sticky;
-        top: 8rem;
-        align-self: start;
+    .blog-hero-bg::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.3);
     }
 
-    /* Typography & Readability */
-    .prose {
-        max-width: 75ch; /* Optimal line length for 600+ word articles */
+    .blog-hero-content {
+        position: relative;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 3rem 2rem;
+    }
+
+    /* Article Container */
+    .article-wrapper {
+        max-width: 800px;
         margin: 0 auto;
     }
 
-    /* Style for the "I ain't reading all that" summary from JSON */
+    /* Article Meta */
+    .article-meta {
+        display: flex;
+        gap: 1.5rem;
+        align-items: center;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid #e5e7eb;
+        font-size: 0.875rem;
+        color: #6b7280;
+    }
+
+    .meta-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .meta-item i {
+        color: #2563eb;
+    }
+
+    /* Typography */
+    .prose {
+        font-size: 1.125rem;
+        line-height: 1.8;
+        color: #374151;
+    }
+
     .prose blockquote {
         border-left: 4px solid #2563eb;
         background-color: #f8fafc;
         padding: 1.5rem;
-        margin-bottom: 2.5rem;
+        margin: 2rem 0;
         border-radius: 0.75rem;
         font-style: italic;
     }
@@ -48,25 +90,21 @@
         letter-spacing: 0.1em;
         color: #2563eb;
         margin-bottom: 0.5rem;
+        font-style: normal;
     }
 
     .prose h4 { 
         color: #111827; 
         font-weight: 800; 
-        text-transform: uppercase; 
-        font-size: 1.25rem; 
-        letter-spacing: 0.05em; 
-        margin-top: 3rem;
-        margin-bottom: 1.25rem; 
+        font-size: 1.5rem; 
+        margin-top: 2.5rem;
+        margin-bottom: 1rem; 
         border-left: 4px solid #2563eb; 
-        padding-left: 1rem; 
+        padding-left: 1rem;
     }
 
     .prose p { 
-        margin-bottom: 1.5rem; 
-        line-height: 1.8; 
-        color: #374151; 
-        font-size: 1.125rem; 
+        margin-bottom: 1.5rem;
     }
 
     .prose strong {
@@ -74,88 +112,134 @@
         font-weight: 700;
     }
 
-    /* Diagram Placeholder Styling */
-    .prose img, .diagram-placeholder {
-        width: 100%;
-        border-radius: 1.5rem;
-        margin: 2.5rem 0;
-        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    /* Back Button */
+    .back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #2563eb;
+        font-weight: 600;
+        text-decoration: none;
+        margin-bottom: 2rem;
+        transition: all 0.3s;
+    }
+
+    .back-btn:hover {
+        transform: translateX(-4px);
+    }
+
+    /* Footer */
+    .article-footer {
+        margin-top: 4rem;
+        padding-top: 2rem;
+        border-top: 1px solid #e5e7eb;
+    }
+
+    .author-info {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+
+    .author-avatar {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #2563eb, #1e40af);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+        font-size: 1.5rem;
+    }
+
+    .author-text h5 {
+        margin: 0;
+        color: #111827;
+        font-weight: 700;
+    }
+
+    .author-text p {
+        margin: 0.25rem 0 0 0;
+        color: #6b7280;
+        font-size: 0.875rem;
     }
 </style>
 {% endblock %}
 
 {% block content %}
-<article class="pt-40 pb-20 px-6 max-w-6xl mx-auto">
-    
-    <div class="article-container">
-        
-        <aside class="sticky-sidebar order-2 lg:order-1">
-            <div class="space-y-8 bg-white p-8 rounded-3xl border border-gray-100 shadow-sm">
-                <a href="{{ url_for('portfolio') }}" class="text-blue-600 font-bold flex items-center gap-2 hover:-translate-x-1 transition-transform mb-4">
-                    <i class="fas fa-arrow-left text-xs"></i> Back to Portfolio
+<!-- Hero Section -->
+<div class="blog-hero mt-14">
+    <div class="blog-hero-bg bg-gradient-to-br {{ project.gradient }}" style="position:absolute; inset:0;">
+        <div style="position:absolute; inset:0; background:rgba(0,0,0,0.3);"></div>
+        <i class="{{ project.icon }} text-white text-[15rem] opacity-20 absolute -right-12 -bottom-12"></i>
+    </div>
+
+    <div class="blog-hero-content px-6 max-w-6xl mx-auto w-full">
+        <div class="text-white/80 text-sm font-semibold uppercase tracking-widest mb-2">
+            {{ project.category }}
+        </div>
+        <h1 class="text-5xl md:text-6xl font-black text-white leading-[1.1]">
+            {{ project.title }}
+        </h1>
+    </div>
+</div>
+
+<!-- Article -->
+<article class="pb-20 px-6 bg-white">
+    <div class="article-wrapper py-12">
+
+        <a href="{{ url_for('portfolio') }}" class="back-btn">
+            <i class="fas fa-arrow-left text-xs"></i> Back to Portfolio
+        </a>
+
+        <!-- Meta -->
+        <div class="article-meta">
+            <div class="meta-item">
+                <i class="fas fa-building text-sm"></i>
+                <span>{{ project.institution }}</span>
+            </div>
+            <div class="meta-item">
+                <i class="fas fa-calendar text-sm"></i>
+                <span>{{ project.term }}</span>
+            </div>
+            <div class="meta-item">
+                <span class="px-2.5 py-1 rounded-full text-white text-xs font-bold
+                    {% if project.status == 'In Progress' %}bg-yellow-500{% else %}bg-green-500{% endif %}">
+                    {{ project.status }}
+                </span>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="prose">
+            {{ project.content | safe }}
+        </div>
+
+        <!-- Footer -->
+        <div class="article-footer">
+            <div class="author-info">
+                <div class="author-avatar">HB</div>
+                <div class="author-text">
+                    <h5>Hunter Bradshaw</h5>
+                    <p>Physics Student & Developer at UTSA</p>
+                </div>
+            </div>
+
+            <div class="flex gap-3">
+                <a href="https://www.linkedin.com/in/hunter-bradshaw/"
+                   target="_blank"
+                   class="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-blue-100 hover:text-blue-700 transition text-sm font-medium">
+                    <i class="fab fa-linkedin"></i> LinkedIn
                 </a>
 
-                <div class="space-y-6">
-                    <div>
-                        <h5 class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Institution</h5>
-                        <p class="text-gray-900 font-bold">{{ project.institution }}</p>
-                    </div>
-
-                    <div>
-                        <h5 class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Timeline</h5>
-                        <p class="text-gray-900 font-bold">{{ project.term }}</p>
-                    </div>
-
-                    <div>
-                        <h5 class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Status</h5>
-                        <span class="inline-block px-3 py-1 rounded-md {% if project.status == 'In Progress' %}bg-yellow-100 text-yellow-800{% else %}bg-green-100 text-green-800{% endif %} text-[10px] font-bold uppercase tracking-tighter">
-                            {{ project.status }}
-                        </span>
-                    </div>
-
-                    <div>
-                        <h5 class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Classification</h5>
-                        <span class="inline-block px-3 py-1 rounded-md bg-blue-600 text-white text-[10px] font-bold uppercase tracking-tighter">
-                            {{ project.type }}
-                        </span>
-                    </div>
-                </div>
-
-                <div class="pt-6 border-t border-gray-100">
-                    <p class="text-sm text-gray-500 mb-4">Questions about this entry?</p>
-                    <a href="mailto:hunter.bradshaw@my.utsa.edu" class="block w-full text-center bg-gray-900 text-white py-3 rounded-xl font-bold hover:bg-blue-600 transition shadow-lg">
-                        Contact Me
-                    </a>
-                </div>
+                <a href="mailto:hunter.bradshaw@my.utsa.edu"
+                   class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition text-sm font-medium">
+                    <i class="fas fa-envelope"></i> Contact
+                </a>
             </div>
-        </aside>
-
-        <div class="order-1 lg:order-2">
-            <header class="mb-12">
-                <div class="text-blue-600 font-black text-xs uppercase tracking-[0.3em] mb-4">
-                    {{ project.category }}
-                </div>
-                <h1 class="text-4xl md:text-6xl font-black text-gray-900 mb-8 leading-[1.1]">
-                    {{ project.title }}
-                </h1>
-                
-                <div class="w-full h-64 md:h-96 bg-gradient-to-br {{ project.gradient }} rounded-[2.5rem] flex items-center justify-center shadow-2xl relative overflow-hidden">
-                    <i class="{{ project.icon }} text-white text-[15rem] opacity-20 absolute -right-12 -bottom-12"></i>
-                    <i class="{{ project.icon }} text-white text-9xl z-10 drop-shadow-2xl"></i>
-                </div>
-            </header>
-
-            <div class="prose">
-                {{ project.content | safe }}
-            </div>
-
-            <footer class="mt-16 pt-8 border-t border-gray-100 flex justify-between items-center">
-                <p class="text-sm text-gray-400 font-medium">© 2026 Hunter Bradshaw Portfolio</p>
-                <div class="flex gap-4">
-                    <a href="#" class="text-gray-400 hover:text-blue-600 transition"><i class="fab fa-linkedin"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-gray-900 transition"><i class="fab fa-github"></i></a>
-                </div>
-            </footer>
         </div>
     </div>
 </article>

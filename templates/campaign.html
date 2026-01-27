@@ -1,0 +1,159 @@
+{% extends "base.html" %}
+
+{% block title %}Vote Hunter Bradshaw | Student Body VP{% endblock %}
+
+{% block head %}
+    <style>
+        .orange-gradient {
+            background: linear-gradient(135deg, #f15a22 0%, #d14a1a 100%);
+        }
+        .text-utsa-blue { color: #0c2340; }
+        .bg-utsa-blue { background-color: #0c2340; }
+        
+        .platform-card {
+            transition: all 0.3s ease;
+            border-left: 6px solid #f15a22;
+        }
+        .platform-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div id="flash-message" class="fixed inset-0 flex items-center justify-center z-50">
+                        <div class="bg-white text-gray-900 px-8 py-5 rounded-2xl shadow-2xl border-2 border-blue-900 flex items-center gap-4 relative animate-fade-in">
+                            <span class="text-lg font-bold">{{ messages[0] }}</span>
+                            <button onclick="document.getElementById('flash-message').remove()" class="absolute top-2 right-2 text-gray-400 hover:text-red-500 text-xl font-bold focus:outline-none">&times;</button>
+                        </div>
+                    </div>
+                    <style>
+                        @keyframes fade-in { from { opacity: 0; transform: scale(0.95);} to { opacity: 1; transform: scale(1);} }
+                        .animate-fade-in { animation: fade-in 0.3s ease; }
+                    </style>
+                {% endif %}
+            {% endwith %}
+    <header class="orange-gradient text-white pt-40 pb-24 px-6 relative overflow-hidden">
+        <div class="absolute top-0 right-0 -mt-20 -mr-20 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 -mb-20 -ml-20 w-96 h-96 bg-black/10 rounded-full blur-3xl"></div>
+
+        <div class="max-w-6xl mx-auto flex flex-col items-center text-center relative z-10">
+            <div class="inline-block px-4 py-1 rounded-full bg-white/20 backdrop-blur-md text-white text-xs font-black uppercase mb-6 tracking-[0.2em] border border-white/30">
+                Official 2026 Campaign
+            </div>
+            <h1 class="text-6xl md:text-8xl font-black mb-6 tracking-tighter italic uppercase">
+                Leading with <span class="text-blue-900">Logic.</span><br>
+                Serving with <span class="text-white underline decoration-blue-900">Heart.</span>
+            </h1>
+            <p class="text-xl md:text-2xl font-medium max-w-2xl opacity-90 leading-relaxed">
+                As a Physics and Mathematics student, I bring an analytical mind to campus problems and a servant's heart to student leadership.
+            </p>
+        </div>
+    </header>
+
+    <section class="py-24 bg-white">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="relative">
+                    <img src="{{ url_for('static', filename='Hunter_Bradshaws_Photo.JPG') }}" 
+                         alt="Hunter Bradshaw" 
+                         class="rounded-3xl shadow-2xl grayscale hover:grayscale-0 transition duration-700">
+                    <div class="absolute -bottom-6 -right-6 bg-utsa-blue text-white p-6 rounded-2xl shadow-xl hidden md:block">
+                        <p class="text-3xl font-black italic">"UTSA First."</p>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="text-4xl font-black text-gray-900 mb-6 uppercase">Why I'm Running</h2>
+                    <p class="text-gray-600 text-lg leading-relaxed mb-6">
+                        I believe the Student Government Association should be more than just a resume builder it should be an incubator for real, tangible change. 
+                    </p>
+                    <p class="text-gray-600 text-lg leading-relaxed">
+                        My background in <span class="text-blue-600 font-bold">Mathematics</span> and <span class="text-blue-600 font-bold">Physics</span> has taught me how to break down complex systems and find efficient solutions. I want to apply that same rigor to improving our campus resources, transparency, and student engagement.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-gray-50 border-y border-gray-100">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-sm font-black text-blue-600 uppercase tracking-[0.4em] mb-2">The Platform</h2>
+                <h3 class="text-4xl font-black text-gray-900 uppercase">Three Pillars for Progress</h3>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="platform-card bg-white p-8 rounded-2xl shadow-sm">
+                    <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-microscope text-2xl text-[#f15a22]"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4">Transparent Communication</h4>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Clear, advertised connections between the university and students so no one is left in the dark. This includes timely notifications when major changes are being discussed or implemented, and accessible updates students can trust.
+                    </p>
+                </div>
+
+                <div class="platform-card bg-white p-8 rounded-2xl shadow-sm">
+                    <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-bullhorn text-2xl text-[#f15a22]"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4">Students with Support</h4>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Create a peer-to-peer learning center while improving visibility of campus resources. Simplify forms and develop “one-stop” processes so students can get what they need done—without unnecessary barriers.
+                    </p>
+                </div>
+
+                <div class="platform-card bg-white p-8 rounded-2xl shadow-sm">
+                    <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-hands-helping text-2xl text-[#f15a22]"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4">Connection & Community</h4>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Improve mobile shuttle applications for reliability and ease of use, while expanding RowdyLink and volunteer platforms to help students connect with each other and the surrounding community.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-white">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-3xl font-black mb-12 uppercase">Proven Leadership Experience</h2>
+            <div class="flex flex-col md:flex-row justify-center gap-12">
+                <div>
+                    <p class="text-4xl font-black text-[#f15a22] mb-2">$5,000</p>
+                    <p class="text-sm font-bold uppercase text-gray-500 tracking-widest">Service above Self Award</p>
+                </div>
+                <div class="hidden md:block w-px bg-gray-200"></div>
+                <div>
+                    <p class="text-4xl font-black text-blue-600 mb-2">VOICES</p>
+                    <p class="text-sm font-bold uppercase text-gray-500 tracking-widest">Most Spirited Award 2025</p>
+                </div>
+                <div class="hidden md:block w-px bg-gray-200"></div>
+                <div>
+                    <p class="text-4xl font-black text-gray-900 mb-2">4.0 GPA</p>
+                    <p class="text-sm font-bold uppercase text-gray-500 tracking-widest">Mathematics B.S.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-utsa-blue text-white mb-20">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-4xl md:text-5xl font-black mb-8 italic uppercase">Be Part of the Momentum.</h2>
+            <p class="text-xl text-blue-200 mb-12">Elections open March 2026. Join our team of volunteers or reach out to discuss how we can make UT San Antonio better together.</p>
+            
+            <div class="flex flex-col sm:flex-row justify-center gap-6">
+                <a href="{{ url_for('join_campaign') }}#get-involved" class="bg-[#f15a22] hover:bg-orange-600 text-white text-xl font-bold py-5 px-12 rounded-2xl transition transform hover:scale-105 shadow-xl">
+                    Join the Campaign
+                </a>
+                <a href="{{ url_for('join_campaign') }}#promotional-materials" class="bg-white/10 border-2 border-white/20 hover:bg-white/20 text-white text-xl font-bold py-5 px-12 rounded-2xl transition">
+                    Spread the Word
+                </a>
+            </div>
+        </div>
+    </section>
+{% endblock %}

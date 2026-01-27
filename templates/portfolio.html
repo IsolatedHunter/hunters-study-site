@@ -88,7 +88,7 @@
                 </div>
 
                 <div class="px-6 pb-6">
-                    <a href="{{ url_for('portfolio_detail', entry_id=loop.index0) }}" class="group block w-full text-center py-3 bg-gray-900 text-white rounded-xl font-bold text-sm transition hover:bg-blue-600 shadow-md">
+                    <a href="{{ url_for('portfolio_detail', slug=entry.title.lower().replace(' ', '-').replace('&', 'and')) }}" class="group block w-full text-center py-3 bg-gray-900 text-white rounded-xl font-bold text-sm transition hover:bg-blue-600 shadow-md">
                         Read Story <i class="fas fa-chevron-right ml-2 text-[10px] transition-transform group-hover:translate-x-1"></i>
                     </a>
                 </div>

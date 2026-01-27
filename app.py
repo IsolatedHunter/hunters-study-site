@@ -1,9 +1,17 @@
+
 import json
 import os
 import traceback
-from flask import Flask, render_template, abort, request
+import secrets
+from flask import Flask, render_template, abort, request, flash
+
 
 app = Flask(__name__)
+if 'SECRET_KEY' in os.environ:
+    app.secret_key = os.environ['SECRET_KEY']
+else:
+    app.secret_key = secrets.token_urlsafe(32)
+    print("[WARNING] No SECRET_KEY set in environment. Generated a random secret key for this session.")
 
 # Allow routes to be accessed with or without trailing slashes
 app.url_map.strict_slashes = False
@@ -17,6 +25,10 @@ def load_json_data(filename):
     with open(file_path, 'r', encoding='utf-8') as f:
         return json.load(f)
 
+def title_to_slug(title):
+    """Convert title to URL-friendly slug"""
+    return title.lower().strip().replace(' ', '-').replace('&', 'and')
+
 @app.route('/')
 def home():
     return render_template('index.html', title="Home")
@@ -28,12 +40,28 @@ def portfolio():
     # Pass the list of entries
     return render_template('portfolio.html', entries=data['entries'])
 
-@app.route('/portfolio/<int:entry_id>')
-def portfolio_detail(entry_id):
+@app.route('/portfolio/<slug>')
+def portfolio_detail(slug):
     data = load_json_data('portfolio_data.json')
-    # Access by list index
-    entry = data['entries'][entry_id]
-    return render_template('portfolio_detail.html', project=entry)
+    # Find entry by matching slug to title
+    for entry in data['entries']:
+        if title_to_slug(entry['title']) == slug:
+            return render_template('portfolio_detail.html', project=entry)
+    abort(404)
+
+@app.route('/campaign')
+def campaign():
+    return render_template('campaign.html')
+
+@app.route('/campaign/join', methods=['GET', 'POST'])
+def join_campaign():
+    if request.method == 'POST':
+        # Here you would normally save to a database or send an email
+        name = request.form.get('name')
+        email = request.form.get('email')
+        role = request.form.get('role')
+        flash("Thanks for joining the team, Hunter will reach out soon!")
+    return render_template('join.html')
 
 @app.route('/resume')
 def resume():
@@ -53,6 +81,10 @@ def academics():
 @app.route('/linktree')
 def linktree():
     return render_template('linktree.html', title="Links")
+
+@app.route('/editor')
+def editor():
+    return render_template('description_editor.html')
 
 # --- Error Handlers ---
 
