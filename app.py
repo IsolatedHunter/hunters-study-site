@@ -3,7 +3,7 @@ import json
 import os
 import traceback
 import secrets
-from flask import Flask, render_template, abort, request, flash
+from flask import Flask, render_template, abort, request, flash, redirect, url_for
 
 
 app = Flask(__name__)
@@ -48,6 +48,10 @@ def portfolio_detail(slug):
         if title_to_slug(entry['title']) == slug:
             return render_template('portfolio_detail.html', project=entry)
     abort(404)
+
+@app.route('/c')
+def c_redirect():
+    return redirect(url_for('campaign'))
 
 @app.route('/campaign')
 def campaign():
