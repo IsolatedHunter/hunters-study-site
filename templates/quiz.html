@@ -1,46 +1,46 @@
 {% extends "base.html" %}
 {% block title %}Quiz — {{ course_num }}{% endblock %}
 {% block content %}
-<div id="quiz-container" class="max-w-3xl mx-auto bg-white p-8 rounded-2xl shadow-2xl min-h-[400px]">
-    <div class="w-full bg-gray-200 rounded-full h-2 mb-8">
+<div id="quiz-container" class="max-w-3xl mx-auto bg-white p-4 sm:p-8 rounded-lg sm:rounded-2xl shadow-2xl min-h-[400px] mx-2 sm:mx-0">
+    <div class="w-full bg-gray-200 rounded-full h-2 mb-6 sm:mb-8">
         <div id="progress-bar" class="bg-orange-500 h-2 rounded-full transition-all duration-500" style="width: 0%"></div>
     </div>
 
-    <div id="quiz-loading" class="text-center py-10">
-        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-900 mx-auto"></div>
-        <p class="mt-4 text-gray-600">Loading study set for Course {{ course_num }}...</p>
+    <div id="quiz-loading" class="text-center py-8 sm:py-10">
+        <div class="animate-spin rounded-full h-10 w-10 sm:h-12 sm:w-12 border-b-2 border-blue-900 mx-auto"></div>
+        <p class="mt-3 sm:mt-4 text-sm sm:text-base text-gray-600">Loading study set for Course {{ course_num }}...</p>
     </div>
 
     <div id="quiz-app" class="hidden">
         <div id="question-area">
-            <h2 id="question-text" class="text-2xl font-bold text-slate-800 mb-6"></h2>
-            <div id="options-grid" class="grid grid-cols-1 gap-4">
+            <h2 id="question-text" class="text-lg sm:text-2xl font-bold text-slate-800 mb-4 sm:mb-6"></h2>
+            <div id="options-grid" class="grid grid-cols-1 gap-3 sm:gap-4">
                 </div>
         </div>
 
-        <div id="feedback-area" class="hidden mt-8 p-6 rounded-xl">
-            <h3 id="feedback-title" class="font-bold text-lg mb-2"></h3>
-            <p id="reasoning-text" class="text-gray-700 italic"></p>
-            <button onclick="nextQuestion()" class="mt-6 w-full bg-blue-900 text-white py-3 rounded-lg font-bold hover:bg-slate-800">
+        <div id="feedback-area" class="hidden mt-6 sm:mt-8 p-4 sm:p-6 rounded-lg sm:rounded-xl">
+            <h3 id="feedback-title" class="font-bold text-base sm:text-lg mb-1 sm:mb-2"></h3>
+            <p id="reasoning-text" class="text-sm sm:text-base text-gray-700 italic"></p>
+            <button onclick="nextQuestion()" class="mt-4 sm:mt-6 w-full bg-blue-900 text-white py-2.5 sm:py-3 rounded-lg font-bold hover:bg-slate-800 text-sm sm:text-base">
                 Continue
             </button>
         </div>
     </div>
 
     <div id="results-area" class="hidden">
-        <h2 class="text-4xl font-black text-blue-900 mb-2">Quiz Complete!</h2>
-        <p class="text-xl text-gray-600 mb-8">Your UTSA Readiness Score</p>
-        <div class="text-6xl font-bold text-orange-600 mb-8" id="final-score">0%</div>
+        <h2 class="text-2xl sm:text-4xl font-black text-blue-900 mb-1 sm:mb-2">Quiz Complete!</h2>
+        <p class="text-base sm:text-xl text-gray-600 mb-4 sm:mb-8">Your UTSA Readiness Score</p>
+        <div class="text-4xl sm:text-6xl font-bold text-orange-600 mb-6 sm:mb-8" id="final-score">0%</div>
 
-        <div id="incorrect-section" class="mb-8 hidden">
-            <h3 class="text-2xl font-bold text-gray-800 mb-4">Problems You Missed</h3>
-            <div id="incorrect-list" class="space-y-4">
+        <div id="incorrect-section" class="mb-6 sm:mb-8 hidden">
+            <h3 class="text-lg sm:text-2xl font-bold text-gray-800 mb-3 sm:mb-4">Problems You Missed</h3>
+            <div id="incorrect-list" class="space-y-3 sm:space-y-4">
             </div>
         </div>
 
-        <div class="flex gap-4 justify-center">
-            <button onclick="restartQuiz()" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-bold hover:bg-blue-700">Restart Quiz</button>
-            <button onclick="goToCourse()" class="bg-slate-600 text-white px-8 py-3 rounded-lg font-bold hover:bg-slate-700">Back to Course</button>
+        <div class="flex flex-col sm:flex-row gap-2 sm:gap-4 justify-center">
+            <button onclick="restartQuiz()" class="bg-blue-600 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-lg font-bold hover:bg-blue-700 text-sm sm:text-base">Restart Quiz</button>
+            <button onclick="goToCourse()" class="bg-slate-600 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-lg font-bold hover:bg-slate-700 text-sm sm:text-base">Back to Course</button>
         </div>
     </div>
 </div>
