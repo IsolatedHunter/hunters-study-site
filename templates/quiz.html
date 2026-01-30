@@ -4,38 +4,21 @@
 
 {% block head %}
 <style>
-    /* Custom Animations */
-    @keyframes slideIn {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-    
-    @keyframes shake {
-        0%, 100% { transform: translateX(0); }
-        25% { transform: translateX(-5px); }
-        75% { transform: translateX(5px); }
-    }
-
-    @keyframes pop {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.02); }
-        100% { transform: scale(1); }
-    }
-
+    @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+    @keyframes pop { 0% { transform: scale(1); } 50% { transform: scale(1.02); } 100% { transform: scale(1); } }
     .animate-slide-in { animation: slideIn 0.4s ease-out forwards; }
     .animate-shake { animation: shake 0.3s ease-in-out; }
     .animate-pop { animation: pop 0.2s ease-in-out; }
-
-    /* Hide scrollbar for cleaner look in results */
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 </style>
 {% endblock %}
 
 {% block content %}
-<div class="min-h-[80vh] flex flex-col items-center justify-center py-6 sm:py-10">
+<div class="max-w-3xl mx-auto py-8 sm:py-10">
 
-    <div id="quiz-loading" class="text-center w-full max-w-lg mx-auto">
+    <div id="quiz-loading" class="text-center w-full max-w-lg mx-auto py-12">
         <div class="relative w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-6">
             <div class="absolute inset-0 border-4 border-gray-200 rounded-full"></div>
             <div class="absolute inset-0 border-4 border-orange-500 rounded-full border-t-transparent animate-spin"></div>
@@ -44,7 +27,7 @@
         <p class="text-sm text-gray-500 mt-2">Loading content for {{ course_num }}</p>
     </div>
 
-    <div id="quiz-app" class="hidden w-full max-w-3xl bg-white rounded-2xl sm:rounded-3xl shadow-xl overflow-hidden border border-gray-100 transition-all duration-300">
+    <div id="quiz-app" class="hidden w-full bg-white rounded-2xl sm:rounded-3xl shadow-xl overflow-hidden border border-gray-100 transition-all duration-300">
         
         <div class="bg-slate-50 border-b border-gray-200 px-4 sm:px-8 py-4">
             <div class="flex justify-between items-end mb-2">
@@ -58,11 +41,9 @@
 
         <div class="p-4 sm:p-8">
             <div id="question-container" class="animate-slide-in">
-                <h2 id="question-text" class="text-xl sm:text-2xl font-bold text-slate-800 leading-snug mb-6 sm:mb-8 text-center sm:text-left">
-                    </h2>
+                <h2 id="question-text" class="text-xl sm:text-2xl font-bold text-slate-800 leading-snug mb-4 sm:mb-6 text-center sm:text-left"></h2>
 
-                <div id="options-grid" class="space-y-3 sm:space-y-4">
-                    </div>
+                <div id="options-grid" class="space-y-3 sm:space-y-4"></div>
             </div>
 
             <div id="feedback-area" class="hidden mt-6 sm:mt-8 pt-6 border-t border-gray-100 animate-slide-in">
@@ -81,7 +62,7 @@
         </div>
     </div>
 
-    <div id="results-area" class="hidden w-full max-w-2xl text-center animate-slide-in">
+    <div id="results-area" class="hidden w-full max-w-2xl mx-auto text-center animate-slide-in">
         <div class="bg-white rounded-3xl shadow-xl p-6 sm:p-10 border border-gray-100 relative overflow-hidden">
             <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 via-orange-500 to-blue-500"></div>
             
@@ -103,17 +84,12 @@
                 <h3 class="text-lg font-bold text-slate-700 mb-4 flex items-center gap-2">
                     <i class="fa-solid fa-triangle-exclamation text-red-500"></i> Needs Review
                 </h3>
-                <div id="incorrect-list" class="space-y-4 max-h-64 overflow-y-auto no-scrollbar pr-2">
-                    </div>
+                <div id="incorrect-list" class="space-y-4 max-h-64 overflow-y-auto no-scrollbar pr-2"></div>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                <button onclick="restartQuiz()" class="w-full py-3 sm:py-3.5 rounded-xl font-bold border-2 border-blue-600 text-blue-600 hover:bg-blue-50 transition">
-                    Try Again
-                </button>
-                <button onclick="goToCourse()" class="w-full py-3 sm:py-3.5 rounded-xl font-bold bg-blue-900 text-white hover:bg-blue-800 shadow-lg shadow-blue-900/20 transition">
-                    Back to Dashboard
-                </button>
+                <button onclick="restartQuiz()" class="w-full py-3 sm:py-3.5 rounded-xl font-bold border-2 border-blue-600 text-blue-600 hover:bg-blue-50 transition">Try Again</button>
+                <button onclick="goToCourse()" class="w-full py-3 sm:py-3.5 rounded-xl font-bold bg-blue-900 text-white hover:bg-blue-800 shadow-lg shadow-blue-900/20 transition">Back to Dashboard</button>
             </div>
         </div>
     </div>
@@ -128,21 +104,15 @@ let incorrectAnswers = [];
 
 async function loadQuiz() {
     try {
-        // Fetch logic
         const response = await fetch(`/static/courses/{{ course_num }}/{{ week }}.json`);
         if (!response.ok) throw new Error("File not found");
         const data = await response.json();
-        
-        // Randomize and pick 10
         currentQuestions = data.sort(() => 0.5 - Math.random()).slice(0, 10);
-        
-        // UI Transition
         setTimeout(() => {
             document.getElementById('quiz-loading').classList.add('hidden');
             document.getElementById('quiz-app').classList.remove('hidden');
             showQuestion();
-        }, 500); // Slight delay for smoother feel
-
+        }, 500);
     } catch (err) {
         console.error("Failed to load quiz:", err);
         document.getElementById('quiz-loading').innerHTML = `
@@ -156,28 +126,22 @@ async function loadQuiz() {
 
 function showQuestion() {
     const q = currentQuestions[currentIndex];
-    
-    // Update Progress Header
     document.getElementById('question-tracker').innerText = `Question ${currentIndex + 1} / ${currentQuestions.length}`;
     const progress = ((currentIndex) / currentQuestions.length) * 100;
     document.getElementById('progress-bar').style.width = `${progress}%`;
 
-    // Populate Text
     const qText = document.getElementById('question-text');
     qText.innerText = q.q;
-    
-    // Reset Animation
     qText.parentElement.classList.remove('animate-slide-in');
-    void qText.parentElement.offsetWidth; // trigger reflow
+    void qText.parentElement.offsetWidth; 
     qText.parentElement.classList.add('animate-slide-in');
 
-    // Build Options
     const grid = document.getElementById('options-grid');
     grid.innerHTML = '';
     document.getElementById('feedback-area').classList.add('hidden');
     
     q.options.forEach((opt, idx) => {
-        const btn = document.createElement('div'); // Changed to div for better custom styling control, wrapped in a button
+        const btn = document.createElement('div');
         btn.innerHTML = `
             <button onclick="checkAnswer(${idx}, this)" class="option-btn w-full text-left p-4 sm:p-5 rounded-xl border-2 border-gray-100 hover:border-blue-400 hover:bg-blue-50 transition-all duration-200 group flex items-start gap-3">
                 <div class="mt-0.5 w-6 h-6 flex-shrink-0 rounded-full border-2 border-gray-300 group-hover:border-blue-500 flex items-center justify-center">
@@ -194,15 +158,13 @@ function checkAnswer(choice, btnElement) {
     const q = currentQuestions[currentIndex];
     const isCorrect = choice === q.correct;
     
-    // Disable all interaction
     const buttons = document.querySelectorAll('.option-btn');
     buttons.forEach(b => {
         b.disabled = true;
         b.classList.add('opacity-70', 'cursor-not-allowed');
-        b.classList.remove('hover:border-blue-400', 'hover:bg-blue-50'); // remove hover effects
+        b.classList.remove('hover:border-blue-400', 'hover:bg-blue-50');
     });
 
-    // Style the clicked button specifically
     btnElement.classList.remove('opacity-70');
     btnElement.classList.add('opacity-100');
 
@@ -212,27 +174,21 @@ function checkAnswer(choice, btnElement) {
 
     if (isCorrect) {
         score++;
-        // Green Styling
         btnElement.classList.add('border-green-500', 'bg-green-50', 'ring-2', 'ring-green-200');
         btnElement.querySelector('div').classList.replace('border-gray-300', 'border-green-600');
         btnElement.querySelector('div div').classList.replace('bg-blue-500', 'bg-green-600');
         btnElement.querySelector('div div').classList.remove('opacity-0');
-        
         feedbackTitle.innerText = "Correct!";
         feedbackTitle.className = "font-black text-xl text-green-700 mb-1";
         feedbackIcon.innerHTML = '<i class="fa-solid fa-circle-check text-green-600"></i>';
-        
-        // Simple confetti pop effect on the button
         btnElement.classList.add('animate-pop');
     } else {
-        // Red Styling for selected
         btnElement.classList.add('border-red-400', 'bg-red-50');
         btnElement.querySelector('div').classList.replace('border-gray-300', 'border-red-500');
         btnElement.querySelector('div div').classList.replace('bg-blue-500', 'bg-red-500');
         btnElement.querySelector('div div').classList.remove('opacity-0');
         btnElement.classList.add('animate-shake');
 
-        // Highlight the correct one
         const correctBtn = buttons[q.correct];
         correctBtn.classList.remove('opacity-70', 'border-gray-100');
         correctBtn.classList.add('border-green-500', 'bg-green-50', 'ring-1', 'ring-green-200');
@@ -252,7 +208,6 @@ function checkAnswer(choice, btnElement) {
     document.getElementById('reasoning-text').innerText = q.reasoning;
     feedbackArea.classList.remove('hidden');
     
-    // Auto scroll to feedback on mobile
     if(window.innerWidth < 640) {
         feedbackArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
@@ -270,19 +225,12 @@ function nextQuestion() {
 function showResults() {
     document.getElementById('quiz-app').classList.add('hidden');
     document.getElementById('results-area').classList.remove('hidden');
-    
-    // Calculate final
     const finalPct = Math.round((score / currentQuestions.length) * 100);
     document.getElementById('final-score').innerText = finalPct + "%";
     
-    // Animate Circle
-    // Circumference is 2 * pi * 45 ≈ 283
     const offset = 283 - (283 * finalPct / 100);
-    setTimeout(() => {
-        document.getElementById('score-circle').style.strokeDashoffset = offset;
-    }, 100);
+    setTimeout(() => { document.getElementById('score-circle').style.strokeDashoffset = offset; }, 100);
 
-    // Show Incorrect List
     const incSection = document.getElementById('incorrect-section');
     const incList = document.getElementById('incorrect-list');
     
@@ -307,7 +255,7 @@ function showResults() {
     } else {
         incSection.classList.add('hidden');
         document.getElementById('final-score').classList.add('text-green-600');
-        document.getElementById('score-circle').setAttribute('stroke', '#16a34a'); // Green circle for 100%
+        document.getElementById('score-circle').setAttribute('stroke', '#16a34a');
     }
 }
 
@@ -317,10 +265,8 @@ function restartQuiz() {
     incorrectAnswers = [];
     document.getElementById('results-area').classList.add('hidden');
     document.getElementById('progress-bar').style.width = `0%`;
-    document.getElementById('score-circle').style.strokeDashoffset = 283; // Reset circle
+    document.getElementById('score-circle').style.strokeDashoffset = 283;
     document.getElementById('quiz-app').classList.remove('hidden');
-    
-    // Reshuffle logic optional, currently just reloading same set but randomized again
     currentQuestions = currentQuestions.sort(() => 0.5 - Math.random());
     showQuestion();
 }
