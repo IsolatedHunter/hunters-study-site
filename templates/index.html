@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-5xl mx-auto">
+    <header class="text-center mb-12">
+        <h1 class="text-5xl font-extrabold text-slate-900 mb-4">HunterHQ <span class="text-orange-600">Study</span></h1>
+        <p class="text-xl text-gray-600">Select a course and week to begin your "UTSA Readiness" assessment.</p>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white rounded-2xl shadow-xl overflow-hidden border-b-8 border-orange-900 transition-transform hover:-translate-y-2">
+            <div class="bg-orange-900 p-4 text-white font-bold tracking-widest text-sm">GEN CHEM 2</div>
+            <div class="p-6">
+                <h2 class="text-2xl font-bold mb-4">Weekly Quiz Study Questions</h2>
+                <div class="space-y-3">
+                    <a href="/course/1113" class="flex justify-between items-center p-3 bg-gray-50 rounded-lg hover:bg-orange-50 group">
+                        <span class="font-medium text-gray-700 group-hover:text-orange-700">View Materials</span>
+                        <span class="text-xs bg-gray-200 px-2 py-1 rounded">Access</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-xl overflow-hidden border-b-8 border-orange-600 transition-transform hover:-translate-y-2">
+            <div class="bg-orange-600 p-4 text-white font-bold tracking-widest text-sm">GEN CHEM 2</div>
+            <div class="p-6">
+                <h2 class="text-2xl font-bold mb-4">STARS Study Sheets</h2>
+                <div class="space-y-3">
+                    <a href="/chem/study-sheets" class="flex justify-between items-center p-3 bg-gray-50 rounded-lg hover:bg-orange-50 group">
+                        <span class="font-medium text-gray-700 group-hover:text-orange-700">View Materials</span>
+                        <span class="text-xs bg-gray-200 px-2 py-1 rounded">Access PDFs</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

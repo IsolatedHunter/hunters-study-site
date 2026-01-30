@@ -1,0 +1,16 @@
+{
+  "course_info": {
+    "name": "General Chemistry I",
+    "code": "1113",
+    "description": "Introduction to chemical principles, reactions, and stoichiometry",
+    "instructor": "Ermler",
+    "semester": "Spring 2026"
+  },
+  "quizzes": [
+    {
+      "title": "Week 1 & 2: Intermolecular Forces",
+      "description": "Test your knowledge of IMF types, properties, and applications",
+      "week": "week_1_2"
+    }
+  ]
+}

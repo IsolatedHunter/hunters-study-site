@@ -1,0 +1,173 @@
+{% extends "base.html" %}
+{% block content %}
+<div id="quiz-container" class="max-w-3xl mx-auto bg-white p-8 rounded-2xl shadow-2xl min-h-[400px]">
+    <div class="w-full bg-gray-200 rounded-full h-2 mb-8">
+        <div id="progress-bar" class="bg-orange-500 h-2 rounded-full transition-all duration-500" style="width: 0%"></div>
+    </div>
+
+    <div id="quiz-loading" class="text-center py-10">
+        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-900 mx-auto"></div>
+        <p class="mt-4 text-gray-600">Loading study set for Course {{ course_num }}...</p>
+    </div>
+
+    <div id="quiz-app" class="hidden">
+        <div id="question-area">
+            <h2 id="question-text" class="text-2xl font-bold text-slate-800 mb-6"></h2>
+            <div id="options-grid" class="grid grid-cols-1 gap-4">
+                </div>
+        </div>
+
+        <div id="feedback-area" class="hidden mt-8 p-6 rounded-xl">
+            <h3 id="feedback-title" class="font-bold text-lg mb-2"></h3>
+            <p id="reasoning-text" class="text-gray-700 italic"></p>
+            <button onclick="nextQuestion()" class="mt-6 w-full bg-blue-900 text-white py-3 rounded-lg font-bold hover:bg-slate-800">
+                Continue
+            </button>
+        </div>
+    </div>
+
+    <div id="results-area" class="hidden">
+        <h2 class="text-4xl font-black text-blue-900 mb-2">Quiz Complete!</h2>
+        <p class="text-xl text-gray-600 mb-8">Your UTSA Readiness Score</p>
+        <div class="text-6xl font-bold text-orange-600 mb-8" id="final-score">0%</div>
+
+        <div id="incorrect-section" class="mb-8 hidden">
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">Problems You Missed</h3>
+            <div id="incorrect-list" class="space-y-4">
+            </div>
+        </div>
+
+        <div class="flex gap-4 justify-center">
+            <button onclick="restartQuiz()" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-bold hover:bg-blue-700">Restart Quiz</button>
+            <button onclick="goToCourse()" class="bg-slate-600 text-white px-8 py-3 rounded-lg font-bold hover:bg-slate-700">Back to Course</button>
+        </div>
+    </div>
+</div>
+
+<script>
+let currentQuestions = [];
+let currentIndex = 0;
+let score = 0;
+let incorrectAnswers = [];
+
+async function loadQuiz() {
+    try {
+        const response = await fetch(`/static/courses/{{ course_num }}/{{ week }}.json`);
+        const data = await response.json();
+        
+        // Shuffle and use all questions (up to 10)
+        currentQuestions = data.sort(() => 0.5 - Math.random()).slice(0, 10);
+        
+        document.getElementById('quiz-loading').classList.add('hidden');
+        document.getElementById('quiz-app').classList.remove('hidden');
+        showQuestion();
+    } catch (err) {
+        console.error("Failed to load quiz:", err);
+        document.getElementById('quiz-loading').innerHTML = "Error loading questions. Check file path.";
+    }
+}
+
+function showQuestion() {
+    const q = currentQuestions[currentIndex];
+    document.getElementById('question-text').innerText = q.q;
+    const grid = document.getElementById('options-grid');
+    grid.innerHTML = '';
+    document.getElementById('feedback-area').classList.add('hidden');
+    
+    q.options.forEach((opt, idx) => {
+        const btn = document.createElement('button');
+        btn.className = "w-full text-left p-4 border-2 border-gray-100 rounded-xl hover:border-blue-500 hover:bg-blue-50 transition font-medium";
+        btn.innerText = opt;
+        btn.onclick = () => checkAnswer(idx);
+        grid.appendChild(btn);
+    });
+
+    const progress = ((currentIndex) / currentQuestions.length) * 100;
+    document.getElementById('progress-bar').style.width = `${progress}%`;
+}
+
+function checkAnswer(choice) {
+    const q = currentQuestions[currentIndex];
+    const feedback = document.getElementById('feedback-area');
+    const title = document.getElementById('feedback-title');
+    
+    // Disable all option buttons
+    const buttons = document.querySelectorAll('#options-grid button');
+    buttons.forEach(b => b.disabled = true);
+
+    if(choice === q.correct) {
+        score++;
+        title.innerText = "Correct! ✅";
+        title.className = "font-bold text-lg mb-2 text-green-700";
+        feedback.className = "mt-8 p-6 rounded-xl bg-green-50 border border-green-200";
+    } else {
+        title.innerText = "Incorrect ❌";
+        title.className = "font-bold text-lg mb-2 text-red-700";
+        feedback.className = "mt-8 p-6 rounded-xl bg-red-50 border border-red-200";
+        
+        // Track incorrect answers
+        incorrectAnswers.push({
+            question: q.q,
+            yourAnswer: q.options[choice],
+            correctAnswer: q.options[q.correct],
+            reasoning: q.reasoning
+        });
+    }
+
+    document.getElementById('reasoning-text').innerText = q.reasoning;
+    feedback.classList.remove('hidden');
+}
+
+function nextQuestion() {
+    currentIndex++;
+    if(currentIndex < currentQuestions.length) {
+        showQuestion();
+    } else {
+        showResults();
+    }
+}
+
+function showResults() {
+    document.getElementById('quiz-app').classList.add('hidden');
+    document.getElementById('results-area').classList.remove('hidden');
+    document.getElementById('progress-bar').style.width = `100%`;
+    const finalPct = Math.round((score / currentQuestions.length) * 100);
+    document.getElementById('final-score').innerText = finalPct + "%";
+
+    // Display incorrect answers if any
+    if(incorrectAnswers.length > 0) {
+        document.getElementById('incorrect-section').classList.remove('hidden');
+        const incorrectList = document.getElementById('incorrect-list');
+        incorrectList.innerHTML = '';
+        
+        incorrectAnswers.forEach((item, idx) => {
+            const div = document.createElement('div');
+            div.className = 'border-l-4 border-red-500 pl-4 py-4 bg-red-50 rounded-lg';
+            div.innerHTML = `
+                <p class="font-bold text-gray-800 mb-2">${idx + 1}. ${item.question}</p>
+                <p class="text-sm text-gray-700 mb-2"><span class="font-semibold">Your answer:</span> ${item.yourAnswer}</p>
+                <p class="text-sm text-green-700 mb-2"><span class="font-semibold">Correct answer:</span> ${item.correctAnswer}</p>
+                <p class="text-sm text-gray-600 italic">${item.reasoning}</p>
+            `;
+            incorrectList.appendChild(div);
+        });
+    }
+}
+
+function restartQuiz() {
+    currentIndex = 0;
+    score = 0;
+    incorrectAnswers = [];
+    document.getElementById('results-area').classList.add('hidden');
+    document.getElementById('progress-bar').style.width = `0%`;
+    document.getElementById('quiz-app').classList.remove('hidden');
+    showQuestion();
+}
+
+function goToCourse() {
+    window.location.href = `/course/{{ course_num }}`;
+}
+
+window.onload = loadQuiz;
+</script>
+{% endblock %}

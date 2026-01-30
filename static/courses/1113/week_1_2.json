@@ -1,0 +1,702 @@
+[
+  {
+    "id": 1,
+    "q": "Which forces are found WITHIN a molecule?",
+    "options": ["Intermolecular forces", "Intramolecular forces", "Dispersion forces", "Phase forces"],
+    "correct": 1,
+    "reasoning": "Intramolecular or bonding forces are found within a molecule (e.g., covalent bonds)."
+  },
+  {
+    "id": 2,
+    "q": "Which forces are found BETWEEN molecules?",
+    "options": ["Intramolecular forces", "Intermolecular forces", "Covalent bonds", "Ionic bonds"],
+    "correct": 1,
+    "reasoning": "Intermolecular or nonbonding forces are found between molecules."
+  },
+  {
+    "id": 3,
+    "q": "Which is generally stronger: intramolecular or intermolecular forces?",
+    "options": ["Intermolecular", "Intramolecular", "They are equal", "It depends on the phase"],
+    "correct": 1,
+    "reasoning": "Intermolecular forces are relatively weak compared to bonding (intramolecular) forces because they involve smaller charges that are farther apart."
+  },
+  {
+    "id": 4,
+    "q": "The van der Waals radius is always ______ than the covalent radius.",
+    "options": ["Smaller", "Larger", "Equal to", "Half of"],
+    "correct": 1,
+    "reasoning": "The VDW radius is one-half the closest distance between nonbonded atoms and is always larger than the covalent radius."
+  },
+  {
+    "id": 5,
+    "q": "What happens to van der Waals radii as you go down a group?",
+    "options": ["They decrease", "They increase", "They stay the same", "They become zero"],
+    "correct": 1,
+    "reasoning": "Van der Waals radii increase down a group."
+  },
+  {
+    "id": 6,
+    "q": "What is the basis of attraction for an ionic bond?",
+    "options": ["Nuclei sharing electrons", "Cation-anion attraction", "Polarizable clouds", "Dipole charges"],
+    "correct": 1,
+    "reasoning": "Ionic bonding is based on cation-anion attraction."
+  },
+  {
+    "id": 7,
+    "q": "What is the basis of attraction for a covalent bond?",
+    "options": ["Cation-anion", "Nuclei sharing an electron pair", "Delocalized electrons", "Dipole charges"],
+    "correct": 1,
+    "reasoning": "Covalent bonds involve nuclei sharing an electron pair."
+  },
+  {
+    "id": 8,
+    "q": "Which force involves cations and delocalized electrons?",
+    "options": ["Ionic", "Covalent", "Metallic", "Dispersion"],
+    "correct": 2,
+    "reasoning": "Metallic bonding is based on cations and delocalized electrons."
+  },
+  {
+    "id": 9,
+    "q": "Which intermolecular force exists between an ion and a polar molecule?",
+    "options": ["Dipole-dipole", "Ion-dipole", "H-bonding", "Dispersion"],
+    "correct": 1,
+    "reasoning": "Ion-dipole forces result when an ion and a nearby polar molecule attract each other."
+  },
+  {
+    "id": 10,
+    "q": "What is the energy range for a Hydrogen bond?",
+    "options": ["0.05-40 kJ/mol", "5-25 kJ/mol", "10-40 kJ/mol", "400-4000 kJ/mol"],
+    "correct": 2,
+    "reasoning": "Hydrogen bonds typically have an energy of 10-40 kJ/mol."
+  },
+  {
+    "id": 11,
+    "q": "Dipole-dipole forces exist only between what kind of molecules?",
+    "options": ["Nonpolar", "Polar", "Ionic", "Metallic"],
+    "correct": 1,
+    "reasoning": "Dipole-dipole forces only exist for polar molecules."
+  },
+  {
+    "id": 12,
+    "q": "Which force relies on polarizable electron clouds?",
+    "options": ["H-bonding", "Ion-dipole", "Dispersion (London)", "Dipole-dipole"],
+    "correct": 2,
+    "reasoning": "Dispersion forces are based on polarizable electron clouds."
+  },
+  {
+    "id": 13,
+    "q": "Which atoms must Hydrogen be bonded to for H-bonding to occur?",
+    "options": ["C, H, O", "N, O, F", "F, Cl, Br", "Li, Na, K"],
+    "correct": 1,
+    "reasoning": "H-bonding requires H to be covalently bonded to N, O, or F."
+  },
+  {
+    "id": 14,
+    "q": "Does C2H6 exhibit H-bonding?",
+    "options": ["Yes", "No", "Only in liquid phase", "Only at high pressure"],
+    "correct": 1,
+    "reasoning": "No, it contains no N, O, or F atoms."
+  },
+  {
+    "id": 15,
+    "q": "Does Methanol (CH3OH) exhibit H-bonding?",
+    "options": ["No", "Yes", "Only with ions", "Impossible to tell"],
+    "correct": 1,
+    "reasoning": "Yes, the H covalently bonded to the O forms an H-bond to the lone pair on the O of an adjacent molecule."
+  },
+  {
+    "id": 16,
+    "q": "Which force increases with molar mass?",
+    "options": ["Dipole-dipole", "H-bonding", "Dispersion", "Ionic"],
+    "correct": 2,
+    "reasoning": "As molar mass increases, dispersion forces increase in strength due to higher polarizability."
+  },
+  {
+    "id": 17,
+    "q": "Which molecular shape allows for stronger dispersion forces: Cylindrical or Compact?",
+    "options": ["Compact", "Cylindrical", "They are equal", "Spherical"],
+    "correct": 1,
+    "reasoning": "A cylindrical shape allows more area for contact, leading to stronger attractions."
+  },
+  {
+    "id": 18,
+    "q": "Which has a higher boiling point: n-Pentane or Neopentane?",
+    "options": ["Neopentane", "n-Pentane", "Same", "Water"],
+    "correct": 1,
+    "reasoning": "n-Pentane has a higher boiling point (36.1°C vs 9.5°C) because its shape allows more points of contact for dispersion forces."
+  },
+  {
+    "id": 19,
+    "q": "Predict the higher boiling point: MgCl2 or PCl3?",
+    "options": ["PCl3", "MgCl2", "Same", "PCl3 (heavier)"],
+    "correct": 1,
+    "reasoning": "MgCl2 has ionic bonding (stronger), while PCl3 has dipole-dipole forces. Stronger forces = higher boiling point."
+  },
+  {
+    "id": 20,
+    "q": "Predict the higher boiling point: CH3NH2 or CH3F?",
+    "options": ["CH3F", "CH3NH2", "Same", "CH3F (more polar)"],
+    "correct": 1,
+    "reasoning": "CH3NH2 has N-H bonds and can form H-bonds. CH3F cannot form H-bonds. H-bonds lead to higher boiling points."
+  },
+  {
+    "id": 21,
+    "q": "Predict the higher boiling point: CH3OH or CH3CH2OH?",
+    "options": ["CH3OH", "CH3CH2OH", "Same", "CH3OH (more polar)"],
+    "correct": 1,
+    "reasoning": "Both H-bond, but CH3CH2OH has a larger molar mass and stronger dispersion forces."
+  },
+  {
+    "id": 22,
+    "q": "In a gas, kinetic energy ______ potential energy.",
+    "options": ["Dominates", "Is equal to", "Is less than", "Is irrelevant to"],
+    "correct": 0,
+    "reasoning": "In a gas, kinetic energy dominates the potential energy of intermolecular forces."
+  },
+  {
+    "id": 23,
+    "q": "In a solid, potential energy ______ kinetic energy.",
+    "options": ["Dominates", "Is equal to", "Is less than", "Is irrelevant to"],
+    "correct": 0,
+    "reasoning": "In a solid, intermolecular forces (potential energy) clearly dominate the kinetic energy."
+  },
+  {
+    "id": 24,
+    "q": "Which phase is highly compressible?",
+    "options": ["Solid", "Liquid", "Gas", "All of them"],
+    "correct": 2,
+    "reasoning": "The large distance between gas particles means that a gas is highly compressible."
+  },
+  {
+    "id": 25,
+    "q": "Do solids flow?",
+    "options": ["Yes, easily", "Yes, slowly", "No, not significantly", "Only at high temp"],
+    "correct": 2,
+    "reasoning": "A solid does not flow significantly."
+  },
+  {
+    "id": 26,
+    "q": "What is the process of solid changing to liquid?",
+    "options": ["Freezing", "Fusion (Melting)", "Sublimation", "Deposition"],
+    "correct": 1,
+    "reasoning": "Solid to liquid is called melting or fusion."
+  },
+  {
+    "id": 27,
+    "q": "What is the process of gas changing to liquid?",
+    "options": ["Vaporization", "Condensation", "Deposition", "Sublimation"],
+    "correct": 1,
+    "reasoning": "Gas to liquid is called condensation."
+  },
+  {
+    "id": 28,
+    "q": "What is the process of solid changing directly to gas?",
+    "options": ["Deposition", "Sublimation", "Fusion", "Vaporization"],
+    "correct": 1,
+    "reasoning": "Solid to gas is called sublimation."
+  },
+  {
+    "id": 29,
+    "q": "Which is exothermic: Fusion or Freezing?",
+    "options": ["Fusion", "Freezing", "Both", "Neither"],
+    "correct": 1,
+    "reasoning": "Freezing releases heat (exothermic), while fusion absorbs heat."
+  },
+  {
+    "id": 30,
+    "q": "Why is Delta H vaporization always larger than Delta H fusion?",
+    "options": ["It takes more energy to separate molecules completely", "Liquids are colder", "Solids are harder", "Vapor is less dense"],
+    "correct": 0,
+    "reasoning": "It takes more energy to completely separate molecules from each other (vaporization) than to just loosen them (fusion)."
+  },
+  {
+    "id": 31,
+    "q": "During a phase change, what happens to temperature?",
+    "options": ["Increases", "Decreases", "Remains constant", "Fluctuates"],
+    "correct": 2,
+    "reasoning": "During a phase change, heat flow occurs at constant temperature."
+  },
+  {
+    "id": 32,
+    "q": "Which equation relates vapor pressure to temperature?",
+    "options": ["Ideal Gas Law", "Clausius-Clapeyron", "Hess's Law", "Boyle's Law"],
+    "correct": 1,
+    "reasoning": "The Clausius-Clapeyron equation relates vapor pressure to temperature."
+  },
+  {
+    "id": 33,
+    "q": "As temperature increases, vapor pressure ______.",
+    "options": ["Decreases", "Increases", "Stays constant", "Becomes zero"],
+    "correct": 1,
+    "reasoning": "As temperature increases, the fraction of molecules with enough energy to enter the vapor phase increases, so vapor pressure increases."
+  },
+  {
+    "id": 34,
+    "q": "The weaker the intermolecular forces, the ______ the vapor pressure.",
+    "options": ["Lower", "Higher", "Same", "None of the above"],
+    "correct": 1,
+    "reasoning": "Weaker IMFs allow particles to enter the vapor phase more easily, causing higher vapor pressure."
+  },
+  {
+    "id": 35,
+    "q": "A liquid boils when its vapor pressure equals ______.",
+    "options": ["Zero", "The external pressure", "100 atm", "Its internal pressure"],
+    "correct": 1,
+    "reasoning": "The boiling point is the temperature at which the vapor pressure equals the external pressure."
+  },
+  {
+    "id": 36,
+    "q": "The normal boiling point is observed at what pressure?",
+    "options": ["1 atm (760 torr)", "10 atm", "0.5 atm", "Vacuum"],
+    "correct": 0,
+    "reasoning": "The normal boiling point is observed at standard atmospheric pressure or 760 torr."
+  },
+  {
+    "id": 37,
+    "q": "Which Halogen has the highest boiling point?",
+    "options": ["F2", "Cl2", "Br2", "I2"],
+    "correct": 3,
+    "reasoning": "I2 has the highest molar mass and thus the strongest dispersion forces, leading to the highest boiling point."
+  },
+  {
+    "id": 38,
+    "q": "Which noble gas has the lowest boiling point?",
+    "options": ["He", "Ne", "Ar", "Kr"],
+    "correct": 0,
+    "reasoning": "He has the lowest molar mass and weakest dispersion forces."
+  },
+  {
+    "id": 39,
+    "q": "Does CH3OCH3 (Dimethyl ether) exhibit H-bonding?",
+    "options": ["Yes", "No", "Sometimes", "Only in water"],
+    "correct": 1,
+    "reasoning": "No, the H atoms are bonded to Carbon, not Oxygen. It has dipole-dipole forces but no H-bonds."
+  },
+  {
+    "id": 40,
+    "q": "Why does H2O have a higher boiling point than H2S?",
+    "options": ["H2S is lighter", "H2O has H-bonding", "H2S is ionic", "H2O is nonpolar"],
+    "correct": 1,
+    "reasoning": "H2O exhibits H-bonding, which is stronger than the dipole-dipole forces in H2S."
+  },
+  {
+    "id": 41,
+    "q": "What is the defining feature of a phase?",
+    "options": ["It is always solid", "It is a physically distinct, homogeneous part of a system", "It is invisible", "It has no mass"],
+    "correct": 1,
+    "reasoning": "Each physical state of matter is a phase, a physically distinct, homogeneous part of a system."
+  },
+  {
+    "id": 42,
+    "q": "Which process is the opposite of sublimation?",
+    "options": ["Fusion", "Condensation", "Deposition", "Freezing"],
+    "correct": 2,
+    "reasoning": "The opposite process of sublimation is called deposition."
+  },
+  {
+    "id": 43,
+    "q": "If P1, T1, and Delta H are known, what can Clausius-Clapeyron solve for?",
+    "options": ["Molar mass", "P2 at T2", "Volume", "Density"],
+    "correct": 1,
+    "reasoning": "The two-point form allows solving for a second pressure or temperature if the other variables are known."
+  },
+  {
+    "id": 44,
+    "q": "What unit must Temperature be in for Clausius-Clapeyron calculations?",
+    "options": ["Celsius", "Fahrenheit", "Kelvin", "Rankine"],
+    "correct": 2,
+    "reasoning": "The gas constant R is in J/mol*K, so T must be converted to Kelvin."
+  },
+  {
+    "id": 45,
+    "q": "Which molecule is polar: CH3Cl or CH4?",
+    "options": ["CH4", "CH3Cl", "Both", "Neither"],
+    "correct": 1,
+    "reasoning": "CH3Cl is polar (dipole-dipole), whereas CH4 is nonpolar (dispersion only)."
+  },
+  {
+    "id": 46,
+    "q": "What force exists between two nonpolar molecules?",
+    "options": ["Dipole-dipole", "Ion-dipole", "Dispersion", "H-bonding"],
+    "correct": 2,
+    "reasoning": "Dispersion forces are the only forces between nonpolar particles."
+  },
+  {
+    "id": 47,
+    "q": "Which is more polarizable: F2 or I2?",
+    "options": ["F2", "I2", "Equal", "Neither"],
+    "correct": 1,
+    "reasoning": "I2 is larger with more electrons, making its electron cloud more polarizable."
+  },
+  {
+    "id": 48,
+    "q": "Does Acetone (CH3COCH3) exhibit H-bonding with itself?",
+    "options": ["Yes", "No", "Maybe", "Only when frozen"],
+    "correct": 1,
+    "reasoning": "No, it has an Oxygen but no H bonded to it. It has dipole-dipole forces but no H-bonds."
+  },
+  {
+    "id": 49,
+    "q": "Which force is typically strongest?",
+    "options": ["Dispersion", "Dipole-dipole", "H-bonding", "Ion-dipole"],
+    "correct": 3,
+    "reasoning": "Ion-dipole forces (40-600 kJ/mol) are generally stronger than H-bonds (10-40 kJ/mol)."
+  },
+  {
+    "id": 50,
+    "q": "What is the dominant force in NaCl?",
+    "options": ["Ionic bonding", "Dispersion", "Covalent", "Metallic"],
+    "correct": 0,
+    "reasoning": "NaCl is an ionic compound held together by ionic bonding."
+  },
+  {
+    "id": 51,
+    "q": "Which substance is a liquid at room temperature due to H-bonding?",
+    "options": ["CH4", "H2O", "H2", "O2"],
+    "correct": 1,
+    "reasoning": "H2O has strong H-bonding, keeping it liquid at room temp while others are gases."
+  },
+  {
+    "id": 52,
+    "q": "Vaporization is an ______ process.",
+    "options": ["Exothermic", "Endothermic", "Isothermic", "Isobaric"],
+    "correct": 1,
+    "reasoning": "Vaporization absorbs heat, making it endothermic."
+  },
+  {
+    "id": 53,
+    "q": "Condensation is an ______ process.",
+    "options": ["Exothermic", "Endothermic", "Isothermic", "Isobaric"],
+    "correct": 0,
+    "reasoning": "Condensation releases heat, making it exothermic."
+  },
+  {
+    "id": 54,
+    "q": "A plot of ln P vs 1/T yields a ______.",
+    "options": ["Curve", "Circle", "Straight line", "Parabola"],
+    "correct": 2,
+    "reasoning": "The Clausius-Clapeyron equation produces a linear relationship between ln P and 1/T."
+  },
+  {
+    "id": 55,
+    "q": "Which has a higher boiling point: HF or HCl?",
+    "options": ["HCl", "HF", "Same", "Neither"],
+    "correct": 1,
+    "reasoning": "HF exhibits H-bonding (exceptionally high BP), while HCl only has dipole-dipole."
+  },
+  {
+    "id": 56,
+    "q": "Which has a higher boiling point: NH3 or PH3?",
+    "options": ["PH3", "NH3", "Same", "Neither"],
+    "correct": 1,
+    "reasoning": "NH3 exhibits H-bonding; PH3 does not."
+  },
+  {
+    "id": 57,
+    "q": "Which molecule has the largest dipole moment?",
+    "options": ["Propane", "Dimethyl ether", "Acetaldehyde", "Acetonitrile"],
+    "correct": 3,
+    "reasoning": "Acetonitrile (3.92 D) has the highest dipole moment in the chart provided."
+  },
+  {
+    "id": 58,
+    "q": "Which force helps DNA strands stick together?",
+    "options": ["Ionic", "Metallic", "H-bonding", "Gravitational"],
+    "correct": 2,
+    "reasoning": "H-bonding is critical for biological molecules (implied by N-H...O structures shown)."
+  },
+  {
+    "id": 59,
+    "q": "Dispersion forces are also known as ______.",
+    "options": ["London forces", "New York forces", "Paris forces", "Berlin forces"],
+    "correct": 0,
+    "reasoning": "Dispersion forces are also called London forces."
+  },
+  {
+    "id": 60,
+    "q": "Which phase takes the shape of its container but has a fixed volume?",
+    "options": ["Solid", "Gas", "Liquid", "Plasma"],
+    "correct": 2,
+    "reasoning": "A liquid conforms to the shape of its container but has a surface (does not fill it)."
+  },
+  {
+    "id": 61,
+    "q": "Which phase takes both the shape and volume of its container?",
+    "options": ["Solid", "Gas", "Liquid", "Crystal"],
+    "correct": 1,
+    "reasoning": "A gas fills its container, taking both the volume and shape."
+  },
+  {
+    "id": 62,
+    "q": "Which phase maintains its own shape and volume?",
+    "options": ["Solid", "Gas", "Liquid", "Fluid"],
+    "correct": 0,
+    "reasoning": "A solid does not take the shape nor volume of its container."
+  },
+  {
+    "id": 63,
+    "q": "Instantaneous dipoles are ______.",
+    "options": ["Permanent", "Temporary", "Ionic", "Metallic"],
+    "correct": 1,
+    "reasoning": "Dispersion forces arise from temporary shifts in electron clouds creating instantaneous dipoles."
+  },
+  {
+    "id": 64,
+    "q": "What is the gas constant R value used in Clausius-Clapeyron?",
+    "options": ["0.0821", "8.314 J/mol*K", "9.8 m/s^2", "1.0"],
+    "correct": 1,
+    "reasoning": "The value of R is 8.314 J/mol*K."
+  },
+  {
+    "id": 65,
+    "q": "What happens to boiling point as external pressure increases?",
+    "options": ["Decreases", "Increases", "Stays same", "Becomes negative"],
+    "correct": 1,
+    "reasoning": "As the external pressure on a liquid increases, the boiling point increases."
+  },
+  {
+    "id": 66,
+    "q": "At equilibrium, Rate(vap) = ______?",
+    "options": ["Rate(fus)", "Rate(sub)", "Rate(cond)", "Zero"],
+    "correct": 2,
+    "reasoning": "At equilibrium, the rate of vaporization equals the rate of condensation."
+  },
+  {
+    "id": 67,
+    "q": "Which bond is formed between a cation and an anion?",
+    "options": ["Covalent", "Ionic", "Metallic", "H-bond"],
+    "correct": 1,
+    "reasoning": "Ionic bonding is the attraction between cation and anion."
+  },
+  {
+    "id": 68,
+    "q": "Which bond involves nuclei sharing electron pairs?",
+    "options": ["Ionic", "Covalent", "Metallic", "Dispersion"],
+    "correct": 1,
+    "reasoning": "Covalent bonding involves nuclei sharing electron pairs."
+  },
+  {
+    "id": 69,
+    "q": "Which atom is most likely to form an H-bond? N, P, S, or C?",
+    "options": ["P", "S", "C", "N"],
+    "correct": 3,
+    "reasoning": "H-bonding specifically requires N, O, or F."
+  },
+  {
+    "id": 70,
+    "q": "Does H2 exhibit dipole-dipole forces?",
+    "options": ["Yes", "No", "Sometimes", "Only at high T"],
+    "correct": 1,
+    "reasoning": "No, H2 is nonpolar and only has dispersion forces."
+  },
+  {
+    "id": 71,
+    "q": "Which has the highest boiling point?",
+    "options": ["Ethanol", "Water", "Ethane", "Methane"],
+    "correct": 1,
+    "reasoning": "Water (H2O) has the strongest H-bonding network and highest BP among these."
+  },
+  {
+    "id": 72,
+    "q": "What state of matter is depicted by spheres far apart moving randomly?",
+    "options": ["Solid", "Liquid", "Gas", "Metal"],
+    "correct": 2,
+    "reasoning": "Gas particles are far apart and move randomly."
+  },
+  {
+    "id": 73,
+    "q": "What state of matter is depicted by spheres touching but disorganized?",
+    "options": ["Solid", "Liquid", "Gas", "Crystal"],
+    "correct": 1,
+    "reasoning": "Liquid particles touch each other but are disorganized."
+  },
+  {
+    "id": 74,
+    "q": "What state of matter is depicted by spheres touching in a regular pattern?",
+    "options": ["Solid", "Liquid", "Gas", "Vapor"],
+    "correct": 0,
+    "reasoning": "Solids are fixed in position in a regular pattern."
+  },
+  {
+    "id": 75,
+    "q": "Which process involves 'Heating the liquid' on a heating curve?",
+    "options": ["Phase change", "Temperature change", "Equilibrium", "Sublimation"],
+    "correct": 1,
+    "reasoning": "Heating the liquid (Stage 1) involves a change in temperature (kinetic energy)."
+  },
+  {
+    "id": 76,
+    "q": "Stage 2 on the heating curve (Liquid-Gas) is ______.",
+    "options": ["Horizontal line", "Vertical line", "Diagonal line", "Curved line"],
+    "correct": 0,
+    "reasoning": "During a phase change (Liquid-Gas), temperature is constant, creating a horizontal line."
+  },
+  {
+    "id": 77,
+    "q": "Which requires more energy: Melting 1 mol of ice or Vaporizing 1 mol of water?",
+    "options": ["Melting", "Vaporizing", "Equal", "Neither"],
+    "correct": 1,
+    "reasoning": "Vaporization requires more energy (40.65 kJ/mol) than melting (6.01 kJ/mol)."
+  },
+  {
+    "id": 78,
+    "q": "Are intermolecular forces stronger or weaker than covalent bonds?",
+    "options": ["Stronger", "Weaker", "Same", "Unrelated"],
+    "correct": 1,
+    "reasoning": "IMFs are relatively weak compared to bonding forces."
+  },
+  {
+    "id": 79,
+    "q": "Which force is present in ALL substances?",
+    "options": ["Dipole-dipole", "H-bonding", "Dispersion", "Ionic"],
+    "correct": 2,
+    "reasoning": "Dispersion forces exist between all particles."
+  },
+  {
+    "id": 80,
+    "q": "Which has a higher vapor pressure at 20°C: Water or Diethyl Ether?",
+    "options": ["Water", "Diethyl Ether", "Same", "Neither"],
+    "correct": 1,
+    "reasoning": "Diethyl ether has weaker IMFs and thus a much higher vapor pressure than water."
+  },
+  {
+    "id": 81,
+    "q": "What happens to dispersion forces as electron clouds become more polarizable?",
+    "options": ["They get weaker", "They get stronger", "No change", "They vanish"],
+    "correct": 1,
+    "reasoning": "Dispersion forces are stronger for more polarizable particles."
+  },
+  {
+    "id": 82,
+    "q": "Large particles generally experience ______ dispersion forces than small ones.",
+    "options": ["Weaker", "Stronger", "Equal", "Zero"],
+    "correct": 1,
+    "reasoning": "Larger particles have more electrons and are more polarizable, leading to stronger dispersion forces."
+  },
+  {
+    "id": 83,
+    "q": "In a closed flask, equilibrium is reached when pressure becomes ______.",
+    "options": ["Zero", "Infinite", "Constant", "Fluctuating"],
+    "correct": 2,
+    "reasoning": "At equilibrium, the vapor pressure becomes constant."
+  },
+  {
+    "id": 84,
+    "q": "Does CH4 form H-bonds?",
+    "options": ["Yes", "No", "Maybe", "Only in space"],
+    "correct": 1,
+    "reasoning": "No, it contains no N, O, or F. It is nonpolar."
+  },
+  {
+    "id": 85,
+    "q": "Which group does Nitrogen belong to (for H-bonding context)?",
+    "options": ["Group 14", "Group 15", "Group 16", "Group 17"],
+    "correct": 1,
+    "reasoning": "Nitrogen is in Group 15."
+  },
+  {
+    "id": 86,
+    "q": "Which group does Oxygen belong to?",
+    "options": ["Group 14", "Group 15", "Group 16", "Group 17"],
+    "correct": 2,
+    "reasoning": "Oxygen is in Group 16."
+  },
+  {
+    "id": 87,
+    "q": "Which group does Fluorine belong to?",
+    "options": ["Group 14", "Group 15", "Group 16", "Group 17"],
+    "correct": 3,
+    "reasoning": "Fluorine is in Group 17."
+  },
+  {
+    "id": 88,
+    "q": "Boiling points generally ______ down a group for noble gases.",
+    "options": ["Decrease", "Increase", "Stay same", "Fluctuate"],
+    "correct": 1,
+    "reasoning": "Boiling points increase down a group as molar mass and dispersion forces increase."
+  },
+  {
+    "id": 89,
+    "q": "Which has a higher boiling point: Ar or Xe?",
+    "options": ["Ar", "Xe", "Same", "Neither"],
+    "correct": 1,
+    "reasoning": "Xe (131.29 g/mol) is heavier than Ar (39.79 g/mol) and has stronger dispersion forces."
+  },
+  {
+    "id": 90,
+    "q": "Which is required for the two-point Clausius-Clapeyron equation?",
+    "options": ["Two pressures, two temperatures, and Delta H", "One pressure and volume", "Mass and Density", "Moles and R"],
+    "correct": 0,
+    "reasoning": "The equation relates P1, P2, T1, T2, and the heat of vaporization."
+  },
+  {
+    "id": 91,
+    "q": "Which intermolecular force is weakest?",
+    "options": ["Ion-dipole", "H-bond", "Dipole-dipole", "Dispersion"],
+    "correct": 3,
+    "reasoning": "Dispersion forces are generally the weakest (0.05-40 kJ/mol)."
+  },
+  {
+    "id": 92,
+    "q": "What shape is a PCl3 molecule?",
+    "options": ["Linear", "Trigonal Pyramidal", "Tetrahedral", "Bent"],
+    "correct": 1,
+    "reasoning": "PCl3 has a trigonal pyramidal geometry."
+  },
+  {
+    "id": 93,
+    "q": "Why is 2,2-dimethylbutane more compact than hexane?",
+    "options": ["It has branching", "It has fewer atoms", "It is ionic", "It is a gas"],
+    "correct": 0,
+    "reasoning": "Branching makes the molecule spherical/compact, reducing surface contact area."
+  },
+  {
+    "id": 94,
+    "q": "Which has the higher boiling point: He or Ne?",
+    "options": ["He", "Ne", "Same", "Neither"],
+    "correct": 1,
+    "reasoning": "Ne is heavier than He, so it has stronger dispersion forces and a higher boiling point."
+  },
+  {
+    "id": 95,
+    "q": "Which is an example of an Ion-Dipole force?",
+    "options": ["Na+ and Cl-", "Na+ and H2O", "H2O and H2O", "Cl2 and Cl2"],
+    "correct": 1,
+    "reasoning": "Na+ (ion) attracting H2O (polar molecule) is an Ion-Dipole force."
+  },
+  {
+    "id": 96,
+    "q": "What is the boiling point of water in Celsius?",
+    "options": ["0", "32", "100", "212"],
+    "correct": 2,
+    "reasoning": "Water boils at 100°C at 1 atm pressure."
+  },
+  {
+    "id": 97,
+    "q": "What is the boiling point of water in Kelvin?",
+    "options": ["273", "373", "100", "0"],
+    "correct": 1,
+    "reasoning": "100°C + 273.15 = 373.15 K."
+  },
+  {
+    "id": 98,
+    "q": "Which has stronger dispersion forces: Br2 or I2?",
+    "options": ["Br2", "I2", "Same", "Neither"],
+    "correct": 1,
+    "reasoning": "I2 is heavier and more polarizable than Br2."
+  },
+  {
+    "id": 99,
+    "q": "Is vaporization endothermic or exothermic?",
+    "options": ["Endothermic", "Exothermic", "Neither", "Both"],
+    "correct": 0,
+    "reasoning": "Vaporization requires heat input (absorbs heat), so it is endothermic."
+  },
+  {
+    "id": 100,
+    "q": "Is deposition endothermic or exothermic?",
+    "options": ["Endothermic", "Exothermic", "Neither", "Both"],
+    "correct": 1,
+    "reasoning": "Deposition releases heat (opposite of sublimation), so it is exothermic."
+  }
+]

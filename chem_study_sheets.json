@@ -1,0 +1,28 @@
+{
+  "sheets": [
+    {
+      "title": "Numan Mohammed STARS FLYER",
+      "date": "2026-01-26",
+      "description": "Numan Mohammed's STARS schedule",
+      "filename": "Numan_Mohammed_STARS_FLYER.pdf"
+    },
+    {
+      "title": "Zain Baki STARS FLYER",
+      "date": "2026-01-26",
+      "description": "Zain Baki's STARS schedule",
+      "filename": "Zain_Baki_STARS_FLYER.pdf"
+    },
+    {
+      "title": "Numan Mohammed Heating Curve",
+      "date": "2026-01-29",
+      "description": "Numan Mohammed's heating curve worksheet",
+      "filename": "HC_01-29-2029.pdf"
+    },
+    {
+      "title": "Numan Mohammed Intermolecular Forces",
+      "date": "2026-01-28",
+      "description": "Numan Mohammed's intermolecular forces worksheet",
+      "filename": "IMF_01-28-2026.pdf"
+    }
+  ]
+}

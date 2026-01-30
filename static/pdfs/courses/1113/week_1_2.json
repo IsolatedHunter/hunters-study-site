@@ -1,0 +1,177 @@
+[
+  {
+    "id": 1,
+    "q": "Which force arises from an instantaneous dipole in one particle inducing a dipole in another?",
+    "options": ["Dipole-dipole", "Hydrogen bonding", "Dispersion (London) forces", "Ion-dipole"],
+    "correct": 2,
+    "reasoning": "Dispersion forces arise when a temporary shift in electrons creates an instantaneous dipole that affects neighbors[cite: 128]."
+  },
+  {
+    "id": 2,
+    "q": "Which molecule exhibits Hydrogen bonding with itself?",
+    "options": ["C2H6", "CH3F", "CH3OH", "PCl3"],
+    "correct": 2,
+    "reasoning": "Methanol (CH3OH) contains an H atom covalently bonded to Oxygen, meeting the N, O, or F requirement[cite: 115, 124]."
+  },
+  {
+    "id": 3,
+    "q": "Why is the boiling point of H2O exceptionally high compared to other Group 16 hydrides?",
+    "options": ["High molar mass", "Strong H-bonding", "Ionic bonding", "Dispersion forces"],
+    "correct": 1,
+    "reasoning": "Substances that exhibit hydrogen bonding have exceptionally high boiling points compared to similar mass molecules[cite: 106, 109]."
+  },
+  {
+    "id": 4,
+    "q": "Which force is defined as the attraction between the positive pole of one polar molecule and the negative pole of another?",
+    "options": ["Dispersion", "Dipole-dipole", "Ion-dipole", "H-bond"],
+    "correct": 1,
+    "reasoning": "Dipole-dipole forces are the attractions between permanent dipoles in polar molecules[cite: 90]."
+  },
+  {
+    "id": 5,
+    "q": "Which statement about the van der Waals (VDW) radius is correct?",
+    "options": ["It is smaller than the covalent radius", "It is half the bond length", "It is always larger than the covalent radius", "It only exists in gases"],
+    "correct": 2,
+    "reasoning": "The VDW radius represents the distance between nonbonded atoms and is always larger than the covalent radius[cite: 27]."
+  },
+  {
+    "id": 6,
+    "q": "What happens to the temperature of a substance during a phase change?",
+    "options": ["It increases", "It decreases", "It remains constant", "It doubles"],
+    "correct": 2,
+    "reasoning": "During a phase change, heat flow occurs at a constant temperature as the average distance between particles changes[cite: 240]."
+  },
+  {
+    "id": 7,
+    "q": "Predict which substance has the higher boiling point: MgCl2 or PCl3?",
+    "options": ["PCl3", "MgCl2", "They are equal", "PCl3 because of mass"],
+    "correct": 1,
+    "reasoning": "MgCl2 is held by strong ionic bonding, whereas PCl3 consists of polar molecules held by weaker dipole-dipole forces[cite: 164, 167]."
+  },
+  {
+    "id": 8,
+    "q": "Which state of matter is characterized by potential energy clearly dominating kinetic energy?",
+    "options": ["Gas", "Liquid", "Solid", "Plasma"],
+    "correct": 2,
+    "reasoning": "In a solid, intermolecular forces (potential energy) dominate, fixing particles in a regular 3D pattern[cite: 210, 211]."
+  },
+  {
+    "id": 9,
+    "q": "Why does n-Pentane have a higher boiling point than Neopentane?",
+    "options": ["n-Pentane is heavier", "n-Pentane has more surface contact area", "Neopentane H-bonds", "n-Pentane is an ion"],
+    "correct": 1,
+    "reasoning": "Cylindrical molecules like n-pentane allow for more intermolecular contact points for dispersion forces[cite: 134, 148]."
+  },
+  {
+    "id": 10,
+    "q": "Which process is endothermic (absorbs heat)?",
+    "options": ["Freezing", "Condensation", "Vaporization", "Deposition"],
+    "correct": 2,
+    "reasoning": "Vaporization, melting (fusion), and sublimation are endothermic processes that absorb heat[cite: 233, 234]."
+  },
+  {
+    "id": 11,
+    "q": "Which is the basis of attraction for London Dispersion forces?",
+    "options": ["Ion charges", "Dipole charges", "Polarizable electron clouds", "Shared electron pairs"],
+    "correct": 2,
+    "reasoning": "Dispersion forces arise from the polarizability of electron clouds[cite: 81, 131]."
+  },
+  {
+    "id": 12,
+    "q": "Does CH3F exhibit Hydrogen bonding?",
+    "options": ["Yes, it has F and H", "No, H is not bonded to F", "Yes, it is polar", "No, it is nonpolar"],
+    "correct": 1,
+    "reasoning": "While CH3F is polar, the H atoms are bonded to Carbon, not Fluorine; thus, it cannot form H-bonds[cite: 170, 173]."
+  },
+  {
+    "id": 13,
+    "q": "Which force is the only one existing between nonpolar particles like O2 or Ar?",
+    "options": ["Dipole-dipole", "H-bonding", "Dispersion forces", "Ion-dipole"],
+    "correct": 2,
+    "reasoning": "Dispersion forces are the only force existing between nonpolar particles[cite: 130]."
+  },
+  {
+    "id": 14,
+    "q": "Define 'sublimation'.",
+    "options": ["Liquid to gas", "Solid to gas", "Gas to solid", "Solid to liquid"],
+    "correct": 1,
+    "reasoning": "Sublimation occurs when a solid moves directly to the gas phase[cite: 226]."
+  },
+  {
+    "id": 15,
+    "q": "Which is generally stronger: a covalent bond or a Hydrogen bond?",
+    "options": ["Covalent bond", "Hydrogen bond", "They are equal", "H-bonds are stronger in water"],
+    "correct": 0,
+    "reasoning": "Intramolecular bonding forces (covalent) are much stronger than intermolecular forces (H-bonds)[cite: 21, 34]."
+  },
+  {
+    "id": 16,
+    "q": "What is the relationship between molar mass and boiling point for similar nonpolar molecules?",
+    "options": ["No relationship", "Inverse relationship", "Direct relationship", "Depends on color"],
+    "correct": 2,
+    "reasoning": "As molar mass increases, dispersion forces increase in strength, raising the boiling point[cite: 133]."
+  },
+  {
+    "id": 17,
+    "q": "During melting (fusion), what happens to the particles in a solid?",
+    "options": ["They gain kinetic energy and move out of fixed positions", "They lose all energy", "They turn into ions", "They form covalent bonds"],
+    "correct": 0,
+    "reasoning": "As temperature increases, particles gain enough kinetic energy to move out of their fixed positions[cite: 220]."
+  },
+  {
+    "id": 18,
+    "q": "Which molecule has the highest boiling point: CH3OH or CH3CH2OH?",
+    "options": ["CH3OH", "CH3CH2OH", "Same", "Neither boils"],
+    "correct": 1,
+    "reasoning": "Both H-bond, but ethanol (CH3CH2OH) has a larger molar mass and thus stronger dispersion forces[cite: 183]."
+  },
+  {
+    "id": 19,
+    "q": "What is vapor pressure?",
+    "options": ["Pressure of the air", "Pressure exerted by vapor on a liquid at equilibrium", "Atmospheric pressure", "Pressure inside a solid"],
+    "correct": 1,
+    "reasoning": "Vapor pressure is the pressure exerted by a vapor in dynamic equilibrium with its liquid[cite: 268, 269]."
+  },
+  {
+    "id": 20,
+    "q": "Which factor leads to a HIGHER vapor pressure?",
+    "options": ["Stronger IMFs", "Lower temperature", "Weaker IMFs", "Higher molar mass"],
+    "correct": 2,
+    "reasoning": "The weaker the IMFs, the more easily particles enter the vapor phase, resulting in higher vapor pressure[cite: 274]."
+  },
+  {
+    "id": 21,
+    "q": "What is the 'normal' boiling point?",
+    "options": ["Boiling point at any pressure", "Boiling point at 760 torr", "Boiling point at 0°C", "Room temperature"],
+    "correct": 1,
+    "reasoning": "The normal boiling point is observed at standard atmospheric pressure, which is 760 torr[cite: 316]."
+  },
+  {
+    "id": 22,
+    "q": "Which force is involved when NaCl dissolves in water?",
+    "options": ["H-bonding", "Dispersion", "Ion-dipole", "Metallic"],
+    "correct": 2,
+    "reasoning": "Ion-dipole forces occur when an ionic compound dissolves in a polar solvent like water[cite: 89]."
+  },
+  {
+    "id": 23,
+    "q": "Identify the phase change: Gas to Liquid.",
+    "options": ["Vaporization", "Condensation", "Sublimation", "Deposition"],
+    "correct": 1,
+    "reasoning": "Changing from a gas to a liquid is called condensation[cite: 224]."
+  },
+  {
+    "id": 24,
+    "q": "Why is ΔHvap always larger than ΔHfus?",
+    "options": ["Fusion is harder", "Vaporization requires complete separation of molecules", "Molecules are heavier as a gas", "Vaporization is exothermic"],
+    "correct": 1,
+    "reasoning": "ΔHvap is larger because it takes more energy to completely separate molecules from each other compared to just melting them[cite: 229]."
+  },
+  {
+    "id": 25,
+    "q": "Which state of matter has a high density and very low freedom of motion?",
+    "options": ["Gas", "Liquid", "Solid", "Vapor"],
+    "correct": 2,
+    "reasoning": "Solids have high density and particles only 'jiggle' in place[cite: 212]."
+  }
+]
