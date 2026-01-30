@@ -5,28 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Hunter Bradshaw - UTSA Student, Web Developer, and Community Leader.">
     <title>{% block title %}Hunter Bradshaw{% endblock %}</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    
     {% block head %}{% endblock %}
     
     <style>
         body { font-family: 'Inter', sans-serif; }
+
+        /* Campaign Bar Glow */
         @keyframes pulse-border {
             0% { border-bottom-color: rgba(255, 255, 255, 0.2); }
             50% { border-bottom-color: rgba(255, 255, 255, 0.6); }
             100% { border-bottom-color: rgba(255, 255, 255, 0.2); }
         }
+
+        /* Button Shimmer */
         @keyframes shimmer {
             0% { background-position: -200% 0; }
             100% { background-position: 200% 0; }
         }
+
         .campaign-glow { animation: pulse-border 3s infinite; }
+        
         .shimmer-btn {
             background: linear-gradient(90deg, #0c2340 0%, #2a5285 50%, #0c2340 100%);
             background-size: 200% 100%;
             animation: shimmer 3s infinite linear;
         }
+
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
@@ -34,6 +45,7 @@
 <body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col selection:bg-orange-200 selection:text-orange-900">
 
     <header class="fixed top-0 w-full z-50">
+        
         <div class="bg-[#f15a22] text-white px-2 sm:px-4 py-2 border-b border-orange-400/30 campaign-glow relative overflow-hidden">
             <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-2 text-center sm:text-left relative z-10">
                 <div class="flex items-center justify-center sm:justify-start gap-2">
@@ -55,34 +67,55 @@
 
         <nav class="bg-white/90 backdrop-blur-lg border-b border-slate-200/60 shadow-sm transition-all duration-300">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex justify-between items-center">
+                
                 <a href="https://hunterhq.me" class="group flex items-center gap-2 hover:opacity-80 transition-opacity">
-                    <div class="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-blue-900 to-blue-700 rounded-lg flex items-center justify-center text-white font-bold text-lg sm:text-xl shadow-blue-900/20 shadow-lg">H</div>
                     <span class="text-lg sm:text-xl font-bold tracking-tighter text-slate-800 group-hover:text-blue-900 transition-colors">
                         HunterHQ<span class="text-blue-600">.me</span>
                     </span>
                 </a>
-                <div class="hidden md:flex items-center gap-4">
-                    <a href="{{ url_for('index') }}" class="text-sm font-semibold text-slate-600 hover:text-blue-600 transition">Study Portal</a>
-                    <div class="h-4 w-px bg-slate-300"></div>
-                    <a href="https://hunterhq.me/linktree/" class="bg-slate-900 text-white px-4 py-2 rounded-lg text-sm font-bold hover:bg-slate-800 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200">
-                        LinkTree <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-xs"></i>
+
+                <div class="hidden md:flex items-center gap-6">
+                    <div class="flex items-center gap-5 text-sm font-semibold text-slate-600">
+                        <a href="https://hunterhq.me/#about" class="hover:text-blue-600 transition">About</a>
+                        <a href="https://hunterhq.me/portfolio" class="hover:text-blue-600 transition">Portfolio</a>
+                        <a href="https://hunterhq.me/academics" class="hover:text-blue-600 transition">Academics</a>
+                    </div>
+
+                    <div class="h-5 w-px bg-slate-300"></div>
+
+                    <a href="{{ url_for('index') }}" class="flex items-center gap-2 text-sm font-bold text-orange-600 bg-orange-50 px-3 py-1.5 rounded-lg hover:bg-orange-100 transition border border-orange-100">
+                        <i class="fa-solid fa-graduation-cap"></i> Study Portal
+                    </a>
+
+                    <a href="mailto:hunter.bradshaw@my.utsa.edu" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-bold hover:bg-blue-700 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200">
+                        Hire Me
                     </a>
                 </div>
+
                 <button id="mobile-menu-button" class="md:hidden text-slate-600 hover:text-blue-600 focus:outline-none p-2 transition-colors">
                     <i class="fa-solid fa-bars text-xl sm:text-2xl" id="menu-icon"></i>
                 </button>
             </div>
-            <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 px-4 py-4 space-y-3 shadow-xl absolute w-full left-0 z-40">
-                <a href="{{ url_for('index') }}" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 text-slate-700 font-semibold transition">
-                    <div class="w-8 h-8 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center"><i class="fa-solid fa-book"></i></div>
-                    Study Portal
+
+            <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 px-4 py-4 space-y-2 shadow-xl absolute w-full left-0 z-40 max-h-[80vh] overflow-y-auto">
+                <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Main Site</p>
+                <a href="https://hunterhq.me/#about" class="block p-3 rounded-xl hover:bg-slate-50 text-slate-700 font-medium transition">About</a>
+                <a href="https://hunterhq.me/portfolio" class="block p-3 rounded-xl hover:bg-slate-50 text-slate-700 font-medium transition">Portfolio</a>
+                <a href="https://hunterhq.me/academics" class="block p-3 rounded-xl hover:bg-slate-50 text-slate-700 font-medium transition">Academics</a>
+                
+                <div class="my-2 border-t border-slate-100"></div>
+                
+                <p class="text-xs font-bold text-orange-400 uppercase tracking-wider mb-2">Apps</p>
+                <a href="{{ url_for('index') }}" class="flex items-center gap-3 p-3 rounded-xl bg-orange-50 text-orange-700 font-bold border border-orange-100 transition">
+                    <div class="w-6 h-6 rounded bg-white text-orange-500 flex items-center justify-center text-xs shadow-sm"><i class="fa-solid fa-graduation-cap"></i></div>
+                    Access Study Portal
                 </a>
-                <a href="https://hunterhq.me" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 text-slate-700 font-semibold transition">
-                    <div class="w-8 h-8 rounded-lg bg-orange-100 text-orange-600 flex items-center justify-center"><i class="fa-solid fa-house"></i></div>
-                    Main Site
-                </a>
-                <hr class="border-slate-100">
-                <a href="https://hunterhq.me/linktree/" class="block w-full text-center bg-slate-900 text-white px-4 py-3 rounded-xl text-sm font-bold shadow-lg">LinkTree</a>
+
+                <div class="mt-4 pt-2">
+                    <a href="mailto:hunter.bradshaw@my.utsa.edu" class="block w-full text-center bg-blue-600 text-white px-4 py-3 rounded-xl text-sm font-bold shadow-lg hover:bg-blue-700 transition">
+                        Hire Me
+                    </a>
+                </div>
             </div>
         </nav>
     </header>
@@ -95,10 +128,12 @@
 
     <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            
             <div class="text-center md:text-left">
                 <span class="block text-white font-bold text-lg mb-1">Hunter Bradshaw</span>
                 <p class="text-xs uppercase tracking-widest text-slate-500">Made with UT San Antonio Pride 🤙</p>
             </div>
+
             <div class="flex gap-4">
                 <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all"><i class="fa-brands fa-linkedin-in"></i></a>
                 <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-gray-700 hover:text-white transition-all"><i class="fa-brands fa-github"></i></a>
@@ -116,17 +151,24 @@
                 <div class="text-2xl text-blue-600">🍪</div>
                 <div>
                     <h4 class="font-bold text-slate-900 text-sm">Cookie Policy</h4>
-                    <p class="text-xs text-slate-500 mt-1 leading-relaxed">We use cookies to analyze traffic and improve your experience. By continuing, you agree to our use of cookies.</p>
+                    <p class="text-xs text-slate-500 mt-1 leading-relaxed">
+                        We use cookies to analyze traffic and improve your experience. By continuing, you agree to our use of cookies.
+                    </p>
                 </div>
             </div>
             <div class="flex gap-2">
-                <button id="cookie-dismiss" class="flex-1 bg-slate-900 text-white py-2 rounded-lg text-xs font-bold hover:bg-slate-800 transition">Accept</button>
-                <a href="https://hunterhq.me/privacy" class="flex-1 bg-gray-100 text-gray-600 py-2 rounded-lg text-xs font-bold hover:bg-gray-200 transition text-center flex items-center justify-center">Learn More</a>
+                <button id="cookie-dismiss" class="flex-1 bg-slate-900 text-white py-2 rounded-lg text-xs font-bold hover:bg-slate-800 transition">
+                    Accept
+                </button>
+                <a href="https://hunterhq.me/privacy" class="flex-1 bg-gray-100 text-gray-600 py-2 rounded-lg text-xs font-bold hover:bg-gray-200 transition text-center flex items-center justify-center">
+                    Learn More
+                </a>
             </div>
         </div>
     </div>
 
     <script>
+      // Google Analytics
       function initializeGoogleAnalytics() {
         if (window.gtagInitialized) return;
         const script = document.createElement('script');
@@ -139,22 +181,29 @@
         gtag('config', 'G-KL2XHFVVFL');
         window.gtagInitialized = true;
       }
+
+      // Logic
       document.addEventListener('DOMContentLoaded', function() {
         const banner = document.getElementById('cookie-banner');
         const dismissBtn = document.getElementById('cookie-dismiss');
         const mobileBtn = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
         const menuIcon = document.getElementById('menu-icon');
+
+        // Mobile Toggle
         mobileBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
             menuIcon.classList.toggle('fa-bars');
             menuIcon.classList.toggle('fa-xmark');
         });
+
+        // Cookie Banner
         if (localStorage.getItem('cookieConsent') === 'true') {
             initializeGoogleAnalytics();
         } else {
             setTimeout(() => { banner.classList.remove('translate-y-full', 'opacity-0'); }, 1000);
         }
+
         dismissBtn.addEventListener('click', function() {
             banner.classList.add('translate-y-full', 'opacity-0');
             setTimeout(() => banner.remove(), 500);
@@ -163,6 +212,7 @@
         });
       });
     </script>
+
     {% block scripts %}{% endblock %}
 </body>
 </html>
